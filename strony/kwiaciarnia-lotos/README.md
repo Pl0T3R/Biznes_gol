@@ -18,7 +18,7 @@ Paleta: Mleko lotosu `#FBF5F2`, Płatek `#F4E6E3`, Głęboka woda `#1C3540`, Lot
 
 | Sekcja | Co robi |
 |---|---|
-| Nagłówek | Logo lotosu, menu, telefon (click-to-call), mała plakietka „Otwarte do 18:00”. Kompaktuje się przy przewijaniu. Na telefonie dostępne menu z obsługą klawiatury (Esc, pułapka fokusu) |
+| Nagłówek | Logo lotosu, menu, telefon (click-to-call), mała plakietka „Otwarte do 18:00”. Przy przewijaniu zmniejsza się i przykleja do góry. Na telefonie dostępne menu z obsługą klawiatury (Esc, pułapka fokusu) |
 | Hero | „Kwiaty spod Bramy Wolińskiej”, bukiet w gotyckim łuku, okrągła wstawka „Kwiatomat 24/7”, plakietka z **lotosem, który się otwiera** (liczona na żywo w czasie Europe/Warsaw, w niedzielę uczciwie: „godziny do potwierdzenia”) |
 | Pasek zaufania | Tradycja, dostawa także w dniu zamówienia, kwiatomaty 24/7, 10% z Kartą Rodziny/Seniora |
 | O nas | Historia oparta wyłącznie na faktach, miejsce (Brama Wolińska, mural z mapą Lubinusa 1618, kościół św. Katarzyny), placeholder cytatu właścicielki |
@@ -32,10 +32,10 @@ Paleta: Mleko lotosu `#FBF5F2`, Płatek `#F4E6E3`, Głęboka woda `#1C3540`, Lot
 | Opinie | 3 eleganckie placeholdery (bez zmyślonych opinii), ogólny ton opinii, linki do Google, Facebooka, Instagrama |
 | Porady | Kwiaty cięte, rośliny doniczkowe, „na cmentarz” |
 | FAQ | 8 pytań (details/summary), braki oznaczone placeholderami |
-| Kontakt | Panorama Goleniowa rysująca się przy przewinięciu, adres, telefony, e-mail, tabela godzin z wyróżnionym „dziś”, kwiatomaty z trasami, sociale, NIP, mapa Google ładowana po kliknięciu |
+| Kontakt | Panorama Goleniowa rysująca się przy przewinięciu, adres, telefony, e-mail, tabela godzin z wyróżnionym „dziś”, kwiatomaty z trasami, Facebook i Instagram, NIP, mapa Google ładowana po kliknięciu |
 | Stopka + pasek mobilny | Panorama nocą, dane, „Projekt i wykonanie: [Twoje studio]”, rok z JS. Na telefonie stały pasek Zadzwoń / Trasa / Zamów |
 
-**Tryb edycji:** dopisz `?edycja` do adresu albo wciśnij **Shift+E**. Wszystkie miejsca do uzupełnienia dostaną obrys, a panel pokaże listę (klik przewija do miejsca): **25 miejsc na zdjęcia (23 pliki), 35 tekstów, 2 fakty do sprawdzenia na miejscu**.
+**Tryb edycji:** dopisz `?edycja` do adresu albo wciśnij **Shift+E**. Wszystkie miejsca do uzupełnienia dostaną obrys, a panel pokaże listę (klik przewija do miejsca): **25 miejsc na zdjęcia (23 pliki), 36 tekstów, 5 miejsc do sprawdzenia na miejscu**.
 
 ## Jak podmienić zdjęcia
 
@@ -43,7 +43,7 @@ Wgraj pliki o nazwach z `img/README.md` do folderu `img/`. Strona sama zastąpi 
 
 ## Gdzie edytować dane firmy
 
-Na początku `<script>` na dole `index.html` jest obiekt **`CONFIG` („EDYTUJ TUTAJ”)**: nazwa, telefony, e-mail, adres, godziny, kwiatomaty, sociale, NIP, przedziały budżetu. Zmiana tam aktualizuje linki tel/SMS/e-mail, trasy Google, tabelę godzin, plakietkę otwarcia i formularz.
+Na początku `<script>` na dole `index.html` jest obiekt **`CONFIG` („EDYTUJ TUTAJ”)**: nazwa, telefony, e-mail, adres, godziny, kwiatomaty, linki do Facebooka i Instagrama, NIP, przedziały budżetu. Zmiana tam aktualizuje linki tel/SMS/e-mail, trasy Google, tabelę godzin, plakietkę otwarcia i formularz.
 Dane strukturalne **JSON-LD** (`<script type="application/ld+json">` w `<head>`) są statyczne. Przy zmianie godzin, telefonu lub adresu popraw je też tam.
 
 ## Placeholdery do uzupełnienia (z właścicielką)
@@ -63,10 +63,11 @@ Dane strukturalne **JSON-LD** (`<script type="application/ld+json">` w `<head>`)
 - Rabat 10% z Kartą Rodziny/Seniora: czy nadal obowiązuje.
 - Godziny w niedzielę i wydłużone godziny przed świętami (1.11, Walentynki, Dzień Matki).
 - 3 opinie klientów (skopiowane za zgodą z Google/Facebooka) z imieniem i źródłem.
+- Galeria: notka „[tu zdjęcia z Instagrama @lotoskwiaciarnia – do podmiany]” pod nagłówkiem. Usuń ją po wgraniu zdjęć.
 - Stopka: „Projekt i wykonanie: [Twoje studio]”.
 - Domena, canonical, og:url, og:image.
 
-**Do sprawdzenia na miejscu (`ph-verify`, widoczne tylko w trybie edycji):** czy lokal stoi przy samej Bramie Wolińskiej (O nas i Kontakt). Jeśli nie, zmień zdanie i rozważ inne hasło w hero, np. „Spokój lotosu w każdym bukiecie”.
+**Do sprawdzenia na miejscu (`ph-verify`, widoczne tylko w trybie edycji):** czy lokal stoi przy samej Bramie Wolińskiej (Targeo ma wpis „Plac Bramy Wolińskiej 1a” z tym samym numerem). Oznaczone są: hasło w hero „Kwiaty spod Bramy Wolińskiej”, napis „PL. BRAMY WOLIŃSKIEJ” na zdjęciu witryny, zdanie w O nas, linijka w Kontakcie i hasło w stopce. To samo hasło jest w `og:title` w `<head>`. Jeśli lokal nie stoi przy bramie, zmień te miejsca, np. na „Spokój lotosu w każdym bukiecie”.
 
 ## Fakty użyte na stronie i ich źródła
 
@@ -122,7 +123,7 @@ Dane strukturalne **JSON-LD** (`<script type="application/ld+json">` w `<head>`)
 
 ## Propozycje domen
 
-Dostępności **nie sprawdzałem**, trzeba to zrobić u rejestratora:
+Dostępności tych nazw **nie sprawdzono**. Trzeba to zrobić u rejestratora:
 
 - `lotoskwiaciarnia.pl` (spójne z Instagramem @lotoskwiaciarnia)
 - `kwiaciarnialotos-goleniow.pl`
@@ -136,6 +137,6 @@ Unikaj `kwiaciarnialotos.pl`. Według researchu używa jej inna kwiaciarnia Loto
 
 - Brak frameworków i zewnętrznych bibliotek. Ilustracje to ręcznie rysowane SVG (sprite z `<symbol>`/`<use>`), więc nie ma zdjęć stockowych.
 - Treść jest czytelna bez JavaScriptu (animacje i „pojawianie się” sekcji działają tylko z JS). Respektowane jest `prefers-reduced-motion`.
-- Dostępność: jeden `h1`, logiczna kolejność nagłówków, skip link, widoczny fokus, kontrasty AA. Test axe-core (WCAG 2.1 AA + best practices): 0 naruszeń na desktopie i mobile.
+- Dostępność: jeden `h1`, logiczna kolejność nagłówków, skip link, widoczny fokus, kontrasty AA. Test axe-core (WCAG 2.1/2.2 AA + best practices): 0 naruszeń na desktopie, na telefonie, z otwartym menu, w lightboxie i w trybie edycji.
 - W konsoli przeglądarki pojawią się błędy 404 dla brakujących plików w `img/`. To oczekiwane: tak działa automatyczna podmiana. Znikną po wgraniu zdjęć.
-- Rozmiar `index.html` to ok. 230 KB (ok. 58 KB po kompresji gzip). Większość to 23 ilustracje SVG, które znikną z widoku po wgraniu zdjęć (kod może zostać, nie przeszkadza).
+- Rozmiar `index.html` to ok. 238 KB (ok. 59 KB po kompresji gzip), więcej niż orientacyjne 180 KB. Większość to ręcznie rysowane ilustracje SVG (ok. 80 KB), które znikną z widoku po wgraniu zdjęć (kod może zostać, nie przeszkadza). Serwer z kompresją gzip/brotli wystarczy, żeby strona ładowała się szybko.

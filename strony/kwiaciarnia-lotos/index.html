@@ -154,8 +154,10 @@ main,.site-footer{overflow-x:clip}
 .btn-sm{min-height:44px;padding:.55em 1.1em;font-size:.95rem}
 .btn-row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
 .btn-row.center{justify-content:center}
-.link-arrow{display:inline-flex;align-items:center;gap:.45em;min-height:44px;font-weight:600;text-decoration:none;color:var(--lotus)}
-.link-arrow .ico{transition:transform .25s var(--ease)}
+/* inline-block (nie flex), żeby przy zawinięciu tekstu strzałka szła za ostatnim słowem */
+.link-arrow{display:inline-block;min-height:44px;padding-block:.65em;line-height:1.35;font-weight:600;text-decoration:none;color:var(--lotus)}
+.link-arrow .ico{display:inline-block;vertical-align:-.22em;margin-left:.4em;transition:transform .25s var(--ease)}
+.nw{white-space:nowrap}
 .link-arrow:hover .ico{transform:translateX(4px)}
 .pill{display:inline-flex;align-items:center;gap:.4em;font-family:var(--font-accent);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;background:var(--ink);color:#fff;padding:.5em 1em;border-radius:999px;white-space:nowrap}
 
@@ -378,8 +380,8 @@ main,.site-footer{overflow-x:clip}
 .g-cap span{display:block;font-family:var(--font-accent);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--brick);font-weight:500;margin-top:.3rem}
 .g-open{position:absolute;inset:0;width:100%;border:0;background:transparent;cursor:zoom-in;border-radius:12px}
 .g-more{text-align:center;margin-top:2.5rem}
-.lightbox{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100%;height:100%;color:#fff}
-.lightbox::backdrop{background:rgba(16,32,39,.92)}
+.lightbox{border:0;padding:0;background:rgba(16,32,39,.94);max-width:100vw;max-height:100vh;width:100%;height:100%;color:#fff}
+.lightbox::backdrop{background:rgba(16,32,39,.6)}
 .lightbox[open]{display:grid;place-items:center}
 .lb-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(.5rem,2vw,2rem);width:min(100%,1000px);padding:clamp(3.5rem,6vh,4.5rem) var(--gutter) 1.5rem}
 .lb-stage{margin:0;display:flex;flex-direction:column;align-items:center}
@@ -526,7 +528,7 @@ main,.site-footer{overflow-x:clip}
 .c-list .note{color:var(--muted);font-weight:400;font-size:.9rem}
 .hours{width:100%;border-collapse:collapse;font-size:.97rem}
 .hours th,.hours td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--line);font-weight:400}
-.hours td{text-align:right;font-variant-numeric:tabular-nums}
+.hours td{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .hours tr.is-today th,.hours tr.is-today td{background:var(--surface);font-weight:600}
 .hours tr.is-today th::after{content:"dziś";margin-left:.5rem;font:600 .72rem/1 var(--font-body);letter-spacing:.04em;color:#fff;background:var(--lotus);padding:.25em .6em .3em;border-radius:999px;vertical-align:.12em}
 .socials{display:flex;gap:.6rem;flex-wrap:wrap}
@@ -534,7 +536,7 @@ main,.site-footer{overflow-x:clip}
 .social:hover{border-color:var(--ink);color:var(--ink)}
 .social .ico{color:var(--lotus)}
 .kw-mini{list-style:none;display:grid;gap:.4rem}
-.kw-mini li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.2rem .8rem}
+.kw-mini li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:.2rem .8rem}
 .kw-mini a{font-weight:600;display:inline-flex;align-items:center;gap:.35rem;min-height:44px}
 .map-slot{position:relative;border-radius:24px;overflow:hidden;min-height:440px;background:var(--surface);border:1px solid var(--line);display:grid}
 .map-ph{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:.8rem;padding:clamp(1.2rem,3vw,2rem);position:relative;background:var(--surface-2) var(--brick-pattern)}
@@ -559,7 +561,7 @@ main,.site-footer{overflow-x:clip}
 .f-brand .brand-sub{color:var(--lantern)}
 .f-brand p{color:var(--on-night-2);margin-top:1rem;font-size:.95rem;max-width:30ch}
 .f-small{color:var(--on-night-2);font-size:.95rem}
-.f-bottom{border-top:1px solid rgba(244,230,227,.16);padding-block:1.4rem calc(1.4rem + var(--mbar-h,0px));display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem;font-size:.86rem;color:var(--on-night-2)}
+.f-bottom{border-top:1px solid rgba(244,230,227,.16);padding-block:1.4rem calc(1.4rem + var(--mbar-h,0px) + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem;font-size:.86rem;color:var(--on-night-2)}
 .f-bottom p{margin:0}
 .f-bottom .ph-text{color:var(--lantern)}
 
@@ -592,7 +594,7 @@ main,.site-footer{overflow-x:clip}
 .edit-mode .ph{outline:3px dashed var(--lotus);outline-offset:-3px}
 .edit-mode .archbox{-webkit-mask:none;mask:none;background:transparent}
 .edit-mode .archbox>.ph{-webkit-mask:none;mask:none}
-.edit-mode .ph-text,.edit-mode .ph-verify{outline:2px solid var(--lotus);outline-offset:2px;background:rgba(166,61,99,.12)}
+.edit-mode .ph-text,.edit-mode .ph-verify{outline:2px solid var(--lotus);outline-offset:2px;background:rgba(166,61,99,.05)}
 .edit-mode .ph-verify{border-bottom:1px dashed var(--lotus)}
 .edit-mode [data-ph]{position:relative}
 .edit-mode .ph-text:hover::after,.edit-mode .ph-verify:hover::after{content:attr(data-ph);position:absolute;left:0;top:calc(100% + 6px);z-index:40;width:max-content;max-width:260px;background:var(--ink);color:#fff;font:500 .8rem/1.4 var(--font-body);font-style:normal;padding:.5em .7em;border-radius:8px;white-space:normal}
@@ -632,6 +634,12 @@ main,.site-footer{overflow-x:clip}
   .mini-status{display:none}
   .nav a{padding:0 .55rem}
 }
+/* Dwie kolumny hero na węższych ekranach: liść i fale nie mogą wchodzić pod tekst ani przyciski */
+@media (max-width:1180px) and (min-width:761px){
+  .lilypad{left:-8%}
+  .ripples{left:-12%}
+  .arch-frame .ph-label{left:auto;right:6%;transform:none;max-width:56%;white-space:normal;align-items:flex-end;text-align:right}
+}
 @media (max-width:1060px){
   .hero-copy{grid-column:1 / span 6}
   .hero-art{grid-column:7 / span 6}
@@ -665,7 +673,6 @@ main,.site-footer{overflow-x:clip}
 }
 @media (max-width:760px){
   :root{--header-h:68px;--mbar-h:64px}
-  body{padding-bottom:var(--mbar-h)}
   .header-cta .btn-primary{width:48px;height:48px;padding:0;border-radius:50%}
   .header-cta .btn-primary span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .brand-mark{width:40px;height:40px}
@@ -673,7 +680,8 @@ main,.site-footer{overflow-x:clip}
   .hero-grid{grid-template-columns:1fr;min-height:0;row-gap:2.6rem}
   .hero-copy,.hero-art{grid-column:1}
   .hero-art{order:-1;width:min(74vw,330px);margin-top:.8rem}
-  .lilypad{left:-13%;bottom:5%;width:40%}
+  .lilypad{left:auto;right:-8%;bottom:4%;width:40%}
+  .arch-frame .ph-label{left:8%;transform:none;max-width:50%;white-space:normal;align-items:flex-start;text-align:left}
   .lilypad .pill{font-size:.56rem;padding:.45em .8em}
   .hero-gate{right:-22%;width:80%}
   .ripples{height:60px;bottom:-26px;left:-20%;right:-20%}
@@ -735,13 +743,13 @@ main,.site-footer{overflow-x:clip}
 }
 @media (max-width:374px){
   .site-header .brand-sub{display:none}
+  .lilypad{right:-3%}
 }
 @media print{
   .site-header,.mbar,.hero-art,.order-form,.order-actions,.lightbox,.editor,.map-slot{display:none!important}
   body{background:#fff}
 }
-.ph-art{stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
-#sprite *,.ph-art *{vector-effect:non-scaling-stroke}
+.ph-art{stroke-width:1.4}
 .k-r{fill:#EDC6CF;stroke:#9A4630;color:#A63D63}
 .k-R{fill:#D997A9;stroke:#7E2F4B;color:#7E2F4B}
 .k-w{fill:#FFFCFA;stroke:#3C5560;color:#E9C98A}
@@ -896,7 +904,7 @@ main,.site-footer{overflow-x:clip}
   </nav>
   <div class="mm-info">
     <a class="btn btn-primary" href="tel:+48914183968" data-tel="phone"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Zadzwoń: <span data-text="phone">91&nbsp;418&nbsp;39&nbsp;68</span></a>
-    <p>ul.&nbsp;Puszkina 1A, Goleniów · Pn–Pt 8:00–18:00, Sob 8:00–16:00</p>
+    <p>ul.&nbsp;Puszkina&nbsp;1A, Goleniów · Pn–Pt 8:00–18:00, Sob 8:00–16:00</p>
   </div>
 </div>
 
@@ -906,14 +914,14 @@ main,.site-footer{overflow-x:clip}
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Stare miasto · ul.&nbsp;Puszkina 1A</p>
-      <h1 id="hero-title">Kwiaty spod Bramy <em>Wolińskiej</em></h1>
+      <p class="eyebrow">Stare miasto · ul.&nbsp;Puszkina&nbsp;1A</p>
+      <h1 id="hero-title"><span class="ph-verify" data-ph="Sąsiedztwo Bramy Wolińskiej do potwierdzenia na miejscu (Targeo: „Plac Bramy Wolińskiej 1a”). Jeśli lokal nie stoi przy bramie, zmień hasło, np. na „Spokój lotosu w każdym bukiecie”.">Kwiaty spod Bramy <em>Wolińskiej</em></span></h1>
       <p class="hero-lead">Kwiaciarnia z&nbsp;wieloletnią tradycją w&nbsp;sercu Goleniowa. Bukiety na każdą okazję, bukiety ślubne i&nbsp;wieńce&nbsp;– a&nbsp;gdy jesteśmy zamknięci, kwiaty czekają na Ciebie w&nbsp;kwiatomacie.</p>
       <div class="status" data-status>
         <svg class="lotus-state" viewBox="0 8 64 54" aria-hidden="true" focusable="false"><path class="ls-ol" d="M32 46C22 46 10 40 6 30 16 29 26 33 32 46Z"/><path class="ls-or" d="M32 46C42 46 54 40 58 30 48 29 38 33 32 46Z"/><path class="ls-il" d="M32 46C24 42 16 32 16 20 24 24 30 32 32 46Z"/><path class="ls-ir" d="M32 46C40 42 48 32 48 20 40 24 34 32 32 46Z"/><path class="ls-c" d="M32 47C27 45 25 38 25 28A12 12 0 0 1 32 17.1 12 12 0 0 1 39 28C39 38 37 45 32 47Z"/><path class="ls-w" d="M21 52Q32 55 43 52M15 57Q32 61 49 57"/></svg>
         <div>
           <p class="status-main" data-status-text>Pn–Pt 8:00–18:00 · Sob 8:00–16:00</p>
-          <p class="status-sub"><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg>Kwiatomat 24/7: Puszkina 1A i&nbsp;Szczecińska 4c</p>
+          <p class="status-sub"><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg>Kwiatomat 24/7: Puszkina&nbsp;1A i&nbsp;Szczecińska&nbsp;4c</p>
         </div>
       </div>
       <div class="hero-ctas">
@@ -929,7 +937,7 @@ main,.site-footer{overflow-x:clip}
         <svg class="arch-lines" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M7 400V191.4A187.2 187.2 0 0 1 150 9.5 187.2 187.2 0 0 1 293 191.4V400"/><path d="M1 400V191.4A193.2 193.2 0 0 1 150 3.4 193.2 193.2 0 0 1 299 191.4V400"/></svg>
       </div>
       <div class="lilypad">
-        <figure class="ph round" style="--ratio:400/400" data-ph-file="img/hero-kwiatomat-puszkina.jpg"><svg class="ph-art" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-hero-kwiatomat-puszkina"/></svg><img src="img/hero-kwiatomat-puszkina.jpg" alt="Kwiatomat Lotos przy ul. Puszkina 1A – automat z bukietami czynny całą dobę" loading="lazy" decoding="async" onload="this.closest('.ph').classList.add('has-photo')" onerror="this.remove()"><figcaption class="ph-label"><span>Miejsce na zdjęcie</span><b>Kwiatomat przy ul.&nbsp;Puszkina 1A</b></figcaption></figure>
+        <figure class="ph round" style="--ratio:400/400" data-ph-file="img/hero-kwiatomat-puszkina.jpg"><svg class="ph-art" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-hero-kwiatomat-puszkina"/></svg><img src="img/hero-kwiatomat-puszkina.jpg" alt="Kwiatomat Lotos przy ul. Puszkina 1A – automat z bukietami czynny całą dobę" loading="lazy" decoding="async" onload="this.closest('.ph').classList.add('has-photo')" onerror="this.remove()"><figcaption class="ph-label"><span>Miejsce na zdjęcie</span><b>Kwiatomat przy ul.&nbsp;Puszkina&nbsp;1A</b></figcaption></figure>
         <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg>Kwiatomat 24/7</span>
       </div>
       <svg class="ripples" viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true" focusable="false"><ellipse cx="400" cy="30" rx="150" ry="9" opacity=".7"/><ellipse cx="400" cy="34" rx="250" ry="17" opacity=".45"/><ellipse cx="400" cy="38" rx="360" ry="26" opacity=".25"/></svg>
@@ -940,9 +948,9 @@ main,.site-footer{overflow-x:clip}
 <!-- ============ 3. PASEK ZAUFANIA ============ -->
 <section class="trust" aria-label="Najważniejsze informacje">
   <ul class="wrap trust-list">
-    <li><svg class="ico" aria-hidden="true"><use href="#i-store"/></svg><span><strong>Wieloletnia tradycja</strong> w&nbsp;sercu Goleniowa, przy ul.&nbsp;Puszkina 1A</span></li>
-    <li><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg><span><strong>Dostawa także w&nbsp;dniu zamówienia</strong> zadzwoń i&nbsp;zapytaj o&nbsp;szczegóły</span></li>
-    <li><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg><span><strong>Kwiatomaty 24/7</strong> przy Puszkina 1A i&nbsp;Szczecińskiej 4c</span></li>
+    <li><svg class="ico" aria-hidden="true"><use href="#i-store"/></svg><span><strong>Wieloletnia tradycja</strong> w&nbsp;sercu Goleniowa, przy ul.&nbsp;Puszkina&nbsp;1A</span></li>
+    <li><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg><span><strong>Dostawa kwiatów</strong> także w&nbsp;dniu zamówienia&nbsp;– zapytaj o&nbsp;szczegóły</span></li>
+    <li><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg><span><strong>Kwiatomaty 24/7</strong> przy Puszkina&nbsp;1A i&nbsp;Szczecińskiej&nbsp;4c</span></li>
     <li><svg class="ico" aria-hidden="true"><use href="#i-percent"/></svg><span><strong>10% rabatu na kwiaty</strong> <a href="#karty">z&nbsp;Kartą Rodziny i&nbsp;Kartą Seniora</a></span></li>
   </ul>
 </section>
@@ -951,19 +959,19 @@ main,.site-footer{overflow-x:clip}
 <section class="sec about" id="o-nas" aria-labelledby="about-title">
   <div class="wrap about-grid">
     <div class="about-media reveal">
-      <div class="archbox"><figure class="ph" style="--ratio:400/500" data-ph-file="img/o-nas-witryna-puszkina.jpg"><svg class="ph-art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="400" height="440" fill="url(#brick)" stroke="none"/><path class="k-n" d="M0 64H400M0 74H400"/><rect class="k-d" x="76" y="92" width="248" height="56" rx="3"/><text x="200" y="111" text-anchor="middle" font-family="Cinzel,serif" font-size="9" letter-spacing="3" fill="#9A4630">KWIACIARNIA</text><text x="200" y="138" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-weight="600" font-size="28" fill="#1C3540">Lotos</text><rect class="k-d" x="34" y="172" width="206" height="234" rx="2"/><path class="k-n" d="M137 172V406M34 380H240" opacity=".6"/><path class="k-D" d="M64 380L60 300H96L92 380Z"/><use href="#f-lily" class="k-w" transform="translate(70 252)rotate(10)scale(0.7)"/><use href="#f-lily" class="k-w" transform="translate(92 268)rotate(-20)scale(0.6)"/><use href="#f-leaf" class="k-l" transform="translate(66 304)rotate(-30)scale(0.9)"/><use href="#f-leaf" class="k-l" transform="translate(90 304)rotate(30)scale(0.9)"/><path class="k-L" d="M70 270L76 300M90 284L82 300"/><path class="k-D" d="M160 380L156 330H214L210 380Z"/><use href="#f-rose" class="k-r" transform="translate(170 316)scale(0.6)"/><use href="#f-rose" class="k-R" transform="translate(196 312)scale(0.6)"/><use href="#f-rose" class="k-r" transform="translate(184 296)scale(0.6)"/><use href="#f-gyps" class="k-w" transform="translate(162 330)rotate(-30)scale(0.9)"/><use href="#f-gyps" class="k-w" transform="translate(208 330)rotate(30)scale(0.9)"/><path class="k-c" d="M44 190L70 216M50 230L100 180M196 190L222 216" opacity=".35"/><rect class="k-D" x="262" y="172" width="104" height="268" rx="2"/><path class="k-d" d="M276 340V214A38 38 0 0 1 314 188 38 38 0 0 1 352 214V340Z"/><path class="k-n" d="M346 372V396M262 440H366"/><path class="k-n" d="M0 440H400M0 452H400" opacity=".7"/><path class="k-d" d="M58 448L64 488H110L116 448Z"/><use href="#f-gerbera" class="k-g" transform="translate(74 430)scale(0.5)"/><use href="#f-gerbera" class="k-r" transform="translate(100 432)scale(0.5)"/><use href="#f-leaf" class="k-l" transform="translate(87 448)scale(0.6)"/><path class="k-d" d="M150 448L156 488H202L208 448Z"/><use href="#f-tulip" class="k-r" transform="translate(166 430)rotate(-12)scale(0.8)"/><use href="#f-tulip" class="k-p" transform="translate(180 422)scale(0.8)"/><use href="#f-tulip" class="k-r" transform="translate(194 432)rotate(12)scale(0.8)"/><use href="#f-lotus" class="k-r" transform="translate(314 166)scale(0.3)"/></svg><img src="img/o-nas-witryna-puszkina.jpg" alt="Witryna Kwiaciarni Lotos przy ul. Puszkina 1A na starym mieście w Goleniowie" loading="lazy" decoding="async" onload="this.closest('.ph').classList.add('has-photo')" onerror="this.remove()"><figcaption class="ph-label"><span>Miejsce na zdjęcie</span><b>Witryna kwiaciarni przy Puszkina 1A</b></figcaption></figure></div>
-      <p class="tag" aria-hidden="true">PL. BRAMY<br>WOLIŃSKIEJ</p>
+      <div class="archbox"><figure class="ph" style="--ratio:400/500" data-ph-file="img/o-nas-witryna-puszkina.jpg"><svg class="ph-art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="400" height="440" fill="url(#brick)" stroke="none"/><path class="k-n" d="M0 64H400M0 74H400"/><rect class="k-d" x="76" y="92" width="248" height="56" rx="3"/><text x="200" y="111" text-anchor="middle" font-family="Cinzel,serif" font-size="9" letter-spacing="3" fill="#9A4630">KWIACIARNIA</text><text x="200" y="138" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-weight="600" font-size="28" fill="#1C3540">Lotos</text><rect class="k-d" x="34" y="172" width="206" height="234" rx="2"/><path class="k-n" d="M137 172V406M34 380H240" opacity=".6"/><path class="k-D" d="M64 380L60 300H96L92 380Z"/><use href="#f-lily" class="k-w" transform="translate(70 252)rotate(10)scale(0.7)"/><use href="#f-lily" class="k-w" transform="translate(92 268)rotate(-20)scale(0.6)"/><use href="#f-leaf" class="k-l" transform="translate(66 304)rotate(-30)scale(0.9)"/><use href="#f-leaf" class="k-l" transform="translate(90 304)rotate(30)scale(0.9)"/><path class="k-L" d="M70 270L76 300M90 284L82 300"/><path class="k-D" d="M160 380L156 330H214L210 380Z"/><use href="#f-rose" class="k-r" transform="translate(170 316)scale(0.6)"/><use href="#f-rose" class="k-R" transform="translate(196 312)scale(0.6)"/><use href="#f-rose" class="k-r" transform="translate(184 296)scale(0.6)"/><use href="#f-gyps" class="k-w" transform="translate(162 330)rotate(-30)scale(0.9)"/><use href="#f-gyps" class="k-w" transform="translate(208 330)rotate(30)scale(0.9)"/><path class="k-c" d="M44 190L70 216M50 230L100 180M196 190L222 216" opacity=".35"/><rect class="k-D" x="262" y="172" width="104" height="268" rx="2"/><path class="k-d" d="M276 340V214A38 38 0 0 1 314 188 38 38 0 0 1 352 214V340Z"/><path class="k-n" d="M346 372V396M262 440H366"/><path class="k-n" d="M0 440H400M0 452H400" opacity=".7"/><path class="k-d" d="M58 448L64 488H110L116 448Z"/><use href="#f-gerbera" class="k-g" transform="translate(74 430)scale(0.5)"/><use href="#f-gerbera" class="k-r" transform="translate(100 432)scale(0.5)"/><use href="#f-leaf" class="k-l" transform="translate(87 448)scale(0.6)"/><path class="k-d" d="M150 448L156 488H202L208 448Z"/><use href="#f-tulip" class="k-r" transform="translate(166 430)rotate(-12)scale(0.8)"/><use href="#f-tulip" class="k-p" transform="translate(180 422)scale(0.8)"/><use href="#f-tulip" class="k-r" transform="translate(194 432)rotate(12)scale(0.8)"/><use href="#f-lotus" class="k-r" transform="translate(314 166)scale(0.3)"/></svg><img src="img/o-nas-witryna-puszkina.jpg" alt="Witryna Kwiaciarni Lotos przy ul. Puszkina 1A na starym mieście w Goleniowie" loading="lazy" decoding="async" onload="this.closest('.ph').classList.add('has-photo')" onerror="this.remove()"><figcaption class="ph-label"><span>Miejsce na zdjęcie</span><b>Witryna kwiaciarni przy Puszkina&nbsp;1A</b></figcaption></figure></div>
+      <p class="tag ph-verify" data-ph="Napis „Pl. Bramy Wolińskiej” – wg wpisu Targeo, do potwierdzenia na miejscu" aria-hidden="true">PL. BRAMY<br>WOLIŃSKIEJ</p>
     </div>
     <div class="about-copy reveal">
       <svg class="h-bud" viewBox="-18 -33 36 46" aria-hidden="true" style="margin:0 0 .7rem"><use href="#f-bud"/></svg>
       <p class="eyebrow">O&nbsp;nas</p>
       <h2 id="about-title">Lotos w&nbsp;sercu starego <em>Goleniowa</em></h2>
-      <p class="lead">Nazwa „Lotos” od lat należy do ul.&nbsp;Puszkina 1A i&nbsp;do numeru 91&nbsp;418&nbsp;39&nbsp;68. To kwiaciarnia z&nbsp;wieloletnią tradycją <span class="ph-text" data-ph="Od którego roku liczyć tradycję? Katalogi podają 1989, rejestr poprzedniej firmy – 1991. Potwierdzić z właścicielką.">[od 19__&nbsp;r.&nbsp;– do potwierdzenia]</span>, którą dziś prowadzi Katarzyna Walczak.</p>
-      <p>Jesteśmy na starym mieście, <span class="ph-verify" data-ph="Do potwierdzenia na miejscu: czy lokal stoi przy samej Bramie Wolińskiej (wpis „Plac Bramy Wolińskiej 1a”).">kilka kroków od Bramy Wolińskiej</span> – XV-wiecznej, jedynej zachowanej z&nbsp;czterech bram miejskich Goleniowa. Na rogu Barnima i&nbsp;Puszkina mural przypomina widok miasta z&nbsp;mapy Lubinusa z&nbsp;1618&nbsp;roku, a&nbsp;nieopodal wznosi się gotycki kościół św. Katarzyny.</p>
+      <p class="lead">Nazwa „Lotos” od lat związana jest z&nbsp;ul.&nbsp;Puszkina&nbsp;1A i&nbsp;z&nbsp;numerem 91&nbsp;418&nbsp;39&nbsp;68. To kwiaciarnia z&nbsp;wieloletnią tradycją <span class="ph-text" data-ph="Od którego roku liczyć tradycję? Katalogi podają 1989, rejestr poprzedniej firmy – 1991. Potwierdzić z właścicielką.">[od 19__&nbsp;r.&nbsp;– do potwierdzenia]</span>, którą dziś prowadzi Katarzyna Walczak.</p>
+      <p>Jesteśmy na starym mieście, <span class="ph-verify" data-ph="Do potwierdzenia na miejscu: czy lokal stoi przy samej Bramie Wolińskiej (wpis „Plac Bramy Wolińskiej 1a”).">kilka kroków od Bramy Wolińskiej</span>&nbsp;– <span class="nw">XV-wiecznej</span>, jedynej zachowanej z&nbsp;czterech bram miejskich Goleniowa. Na rogu Barnima i&nbsp;Puszkina mural przypomina widok miasta z&nbsp;mapy Lubinusa z&nbsp;1618&nbsp;roku, a&nbsp;nieopodal wznosi się gotycki kościół św.&nbsp;Katarzyny.</p>
       <p>Układamy bukiety z&nbsp;kwiatów ciętych na każdą okazję, przygotowujemy bukiety ślubne i&nbsp;wieńce pogrzebowe. Kwiaty dowozimy&nbsp;– także w&nbsp;dniu zamówienia.</p>
-      <p>Kiedy kwiaciarnia jest zamknięta, zapraszamy do kwiatomatów: przy Puszkina 1A i&nbsp;przy ul.&nbsp;Szczecińskiej 4c, naprzeciw fontanny. Bukiety odświeża w&nbsp;nich codziennie nasz zespół.</p>
+      <p>Kiedy kwiaciarnia jest zamknięta, zapraszamy do kwiatomatów: przy Puszkina&nbsp;1A i&nbsp;przy ul.&nbsp;Szczecińskiej&nbsp;4c, naprzeciw fontanny. Bukiety odświeża w&nbsp;nich codziennie nasz zespół.</p>
       <ul class="facts">
-        <li><strong>Puszkina 1A</strong>kwiaciarnia na starym mieście</li>
+        <li><strong>Puszkina&nbsp;1A</strong>kwiaciarnia na starym mieście</li>
         <li><strong>2 kwiatomaty</strong>czynne przez całą dobę</li>
         <li><strong>Dostawa</strong>także w&nbsp;dniu zamówienia</li>
       </ul>
@@ -1057,7 +1065,7 @@ main,.site-footer{overflow-x:clip}
         <div class="offer-body">
           <p class="eyebrow">Do domu</p>
           <h3>Rośliny doniczkowe</h3>
-          <p>Rośliny zielone i&nbsp;kwitnące&nbsp;– do domu, do biura i&nbsp;na prezent. Zajrzyj albo zadzwoń, co mamy dziś na miejscu.</p>
+          <p>Rośliny zielone i&nbsp;kwitnące&nbsp;– do domu, do biura i&nbsp;na prezent. Zajrzyj do kwiaciarni albo zadzwoń i&nbsp;zapytaj, co dziś mamy na miejscu.</p>
           <p class="price">Cena: <span class="ph-text" data-ph="Ceny roślin (od)">od __&nbsp;zł</span></p>
           <a class="link-arrow" href="tel:+48914183968" data-tel="phone">Zadzwoń i&nbsp;zapytaj<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
@@ -1067,7 +1075,7 @@ main,.site-footer{overflow-x:clip}
     <div class="also">
       <p class="also-title">Zapytaj także</p>
       <ul class="also-grid">
-        <li class="reveal"><svg class="ico" aria-hidden="true"><use href="#i-vase"/></svg><h3>Kwiaty cięte</h3><p>Pojedyncze kwiaty i&nbsp;zieleń do wyboru w&nbsp;kwiaciarni przy Puszkina 1A.</p></li>
+        <li class="reveal"><svg class="ico" aria-hidden="true"><use href="#i-vase"/></svg><h3>Kwiaty cięte</h3><p>Pojedyncze kwiaty i&nbsp;zieleń do wyboru w&nbsp;kwiaciarni przy Puszkina&nbsp;1A.</p></li>
         <li class="reveal"><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg><h3>Dostawa</h3><p>Także w&nbsp;dniu zamówienia. Zasięg i&nbsp;koszt: <span class="ph-text" data-ph="Zasięg i koszt dostawy, godzina przyjmowania zamówień na ten sam dzień">[do potwierdzenia]</span></p></li>
         <li class="reveal"><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg><h3>Dekoracje okolicznościowe</h3><p>Uroczystości, jubileusze, stoły&nbsp;– zapytaj o&nbsp;możliwości i&nbsp;wycenę.</p></li>
         <li class="reveal"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><h3>Bilecik i&nbsp;dodatki</h3><p>Bilecik z&nbsp;życzeniami, wstążka&nbsp;– <span class="ph-text" data-ph="Jakie dodatki są dostępne (bileciki, karnety, upominki)?">[zapytaj o&nbsp;dostępne dodatki]</span></p></li>
@@ -1099,7 +1107,7 @@ main,.site-footer{overflow-x:clip}
       <ul class="memory-list">
         <li><h3>Stroiki i&nbsp;wiązanki na groby</h3><p>Z&nbsp;chryzantem, zieleni i&nbsp;szyszek. Skład i&nbsp;ceny: <span class="ph-text" data-ph="Skład i ceny stroików na Wszystkich Świętych">[do potwierdzenia]</span></p></li>
         <li><h3>Wieńce i&nbsp;wiązanki pogrzebowe</h3><p>Z&nbsp;żywych kwiatów, na wskazany dzień i&nbsp;godzinę. Zapytaj o&nbsp;szarfę z&nbsp;dedykacją.</p></li>
-        <li><h3>Dowóz</h3><p>Na cmentarz lub do domu pogrzebowego&nbsp;– zapytaj o&nbsp;możliwość. Cmentarz komunalny w&nbsp;Goleniowie mieści się przy ul.&nbsp;Przestrzennej 1.</p></li>
+        <li><h3>Dowóz</h3><p>Na cmentarz lub do domu pogrzebowego&nbsp;– zapytaj o&nbsp;możliwość. Cmentarz komunalny w&nbsp;Goleniowie mieści się przy ul.&nbsp;Przestrzennej&nbsp;1.</p></li>
       </ul>
       <p class="memory-note"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg><span>Zamów wcześniej&nbsp;– przed 1&nbsp;listopada <span data-allsaints-day>(w&nbsp;2026&nbsp;r. to niedziela)</span>. <strong data-allsaints-count></strong></span></p>
       <div class="btn-row">
@@ -1112,13 +1120,13 @@ main,.site-footer{overflow-x:clip}
 
 <!-- ============ 7. KWIATOMATY – NOCNY PAS ============ -->
 <section class="sec night" id="kwiatomaty" aria-labelledby="kw-title">
-  <svg class="stars" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#d-star" transform="translate(80 90) scale(0.9)" opacity="1"/><use href="#d-star" transform="translate(210 40) scale(0.5)" opacity="0.7"/><use href="#d-star" transform="translate(330 130) scale(0.6)" opacity="0.5"/><use href="#d-star" transform="translate(520 60) scale(0.8)" opacity="0.8"/><use href="#d-star" transform="translate(690 30) scale(0.5)" opacity="0.6"/><use href="#d-star" transform="translate(870 100) scale(1)" opacity="0.9"/><use href="#d-star" transform="translate(1010 50) scale(0.6)" opacity="0.7"/><use href="#d-star" transform="translate(1130 140) scale(0.8)" opacity="0.6"/><use href="#d-star" transform="translate(140 300) scale(0.5)" opacity="0.4"/><use href="#d-star" transform="translate(1080 330) scale(0.6)" opacity="0.45"/><use href="#d-star" transform="translate(40 520) scale(0.7)" opacity="0.35"/><use href="#d-star" transform="translate(1160 560) scale(0.5)" opacity="0.35"/><use href="#d-star" transform="translate(600 640) scale(0.5)" opacity="0.3"/><use href="#d-star" transform="translate(960 470) scale(0.4)" opacity="0.3"/><use href="#d-star" transform="translate(300 470) scale(0.4)" opacity="0.3"/><g fill="#E2B467" opacity=".5"><circle cx="420" cy="70" r="1.2"/><circle cx="760" cy="120" r="1"/><circle cx="1180" cy="40" r="1.2"/><circle cx="20" cy="200" r="1"/><circle cx="640" cy="160" r="1"/></g><use href="#i-moon" x="1040" y="60" width="54" height="54" fill="none" stroke="#E2B467" stroke-width="1" opacity=".75"/></svg>
+  <svg class="stars" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#d-star" transform="translate(80 90) scale(0.9)" opacity="1"/><use href="#d-star" transform="translate(210 40) scale(0.5)" opacity="0.7"/><use href="#d-star" transform="translate(330 130) scale(0.6)" opacity="0.5"/><use href="#d-star" transform="translate(520 60) scale(0.8)" opacity="0.8"/><use href="#d-star" transform="translate(690 30) scale(0.5)" opacity="0.6"/><use href="#d-star" transform="translate(870 100) scale(1)" opacity="0.9"/><use href="#d-star" transform="translate(1010 50) scale(0.6)" opacity="0.7"/><use href="#d-star" transform="translate(1130 140) scale(0.8)" opacity="0.6"/><use href="#d-star" transform="translate(140 300) scale(0.5)" opacity="0.4"/><use href="#d-star" transform="translate(1080 330) scale(0.6)" opacity="0.45"/><use href="#d-star" transform="translate(40 520) scale(0.7)" opacity="0.35"/><use href="#d-star" transform="translate(1160 560) scale(0.5)" opacity="0.35"/><use href="#d-star" transform="translate(600 690) scale(0.45)" opacity="0.3"/><use href="#d-star" transform="translate(572 20) scale(0.45)" opacity="0.55"/><use href="#d-star" transform="translate(960 470) scale(0.4)" opacity="0.3"/><use href="#d-star" transform="translate(300 470) scale(0.4)" opacity="0.3"/><g fill="#E2B467" opacity=".5"><circle cx="420" cy="70" r="1.2"/><circle cx="760" cy="120" r="1"/><circle cx="1180" cy="40" r="1.2"/><circle cx="20" cy="200" r="1"/><circle cx="640" cy="160" r="1"/></g><use href="#i-moon" x="1040" y="60" width="54" height="54" fill="none" stroke="#E2B467" stroke-width="1" opacity=".75"/></svg>
   <div class="wrap">
     <div class="sec-head reveal">
       <svg class="h-bud" viewBox="-18 -33 36 46" aria-hidden="true"><use href="#f-bud"/></svg>
       <p class="eyebrow">Kwiatomat 24/7</p>
-      <h2 id="kw-title">Kwiaty o <em>każdej</em> porze</h2>
-      <p class="lead">Gdy kwiaciarnia jest zamknięta, kwiaty czekają w&nbsp;kwiatomacie&nbsp;– całą dobę.</p>
+      <h2 id="kw-title">Kwiaty o&nbsp;<em>każdej</em> porze</h2>
+      <p class="lead">Gdy kwiaciarnia jest zamknięta, kwiaty czekają w&nbsp;kwiatomacie&nbsp;– całą&nbsp;dobę.</p>
       <p class="kw-live" data-kw-live><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><span>W&nbsp;dzień zapraszamy do kwiaciarni, wieczorem i&nbsp;nocą&nbsp;– do kwiatomatu.</span></p>
     </div>
     <ol class="steps reveal">
@@ -1137,16 +1145,16 @@ main,.site-footer{overflow-x:clip}
 <path class="street" d="M224 252C290 262 370 266 470 262"/>
 <text x="258" y="104" transform="rotate(7 258 104)">ul.&nbsp;Puszkina</text>
 <text x="222" y="58" transform="rotate(85 222 58)">ul.&nbsp;Barnima</text>
-<text x="86" y="304" transform="rotate(-22 86 304)">ul.&nbsp;Szczecińska</text>
+<text x="300" y="283" transform="rotate(2 300 283)">ul.&nbsp;Szczecińska</text>
 <g class="lm" transform="translate(98 92) scale(.2)"><use href="#gate"/></g><text x="98" y="122" text-anchor="middle">Brama Wolińska</text>
 <g class="lm" transform="translate(296 200) scale(.17)"><use href="#church"/></g><text x="306" y="216" text-anchor="middle">kościół św. Katarzyny</text>
-<g class="lm" transform="translate(176 280)"><ellipse rx="15" ry="4.5"/><path d="M-15 0v4a15 4.5 0 0 0 30 0v-4M0-1v-11M0-12c-6-4-10 0-11 6M0-12c6-4 10 0 11 6"/></g><text x="176" y="302" text-anchor="middle">fontanna</text>
+<g class="lm" transform="translate(262 236)"><ellipse rx="15" ry="4.5"/><path d="M-15 0v4a15 4.5 0 0 0 30 0v-4M0-1v-11M0-12c-6-4-10 0-11 6M0-12c6-4 10 0 11 6"/></g><text x="284" y="240">fontanna</text>
 <g class="pin" data-pin="0" tabindex="0" role="button" aria-expanded="false" aria-label="Kwiatomat 1: ul. Puszkina 1A, przy kwiaciarni – pokaż szczegóły" transform="translate(150 100)"><circle class="pulse" cy="-2" r="12"/><circle class="focus-ring" cy="-24" r="19"/><path class="pin-body" d="M0 0C-8-10-14-16-14-24A14 14 0 1 1 14-24C14-16 8-10 0 0Z"/><text y="-19.5" text-anchor="middle">1</text></g>
-<g class="pin" data-pin="1" tabindex="0" role="button" aria-expanded="false" aria-label="Kwiatomat 2: ul. Szczecińska 4c, naprzeciw fontanny – pokaż szczegóły" transform="translate(236 284)"><circle class="pulse" cy="-2" r="12"/><circle class="focus-ring" cy="-24" r="19"/><path class="pin-body" d="M0 0C-8-10-14-16-14-24A14 14 0 1 1 14-24C14-16 8-10 0 0Z"/><text y="-19.5" text-anchor="middle">2</text></g>
+<g class="pin" data-pin="1" tabindex="0" role="button" aria-expanded="false" aria-label="Kwiatomat 2: ul. Szczecińska 4c, naprzeciw fontanny – pokaż szczegóły" transform="translate(258 292)"><circle class="pulse" cy="-2" r="12"/><circle class="focus-ring" cy="-24" r="19"/><path class="pin-body" d="M0 0C-8-10-14-16-14-24A14 14 0 1 1 14-24C14-16 8-10 0 0Z"/><text y="-19.5" text-anchor="middle">2</text></g>
 </svg>
         <div class="map-card" data-map-card hidden role="group" aria-live="polite">
           <button class="x" type="button" aria-label="Zamknij"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
-          <h3 data-mc-title></h3>
+          <h3 data-mc-title>ul.&nbsp;Puszkina&nbsp;1A</h3>
           <p data-mc-text></p>
           <a class="btn btn-night btn-sm" data-mc-route href="#" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg>Wyznacz trasę</a>
         </div>
@@ -1154,19 +1162,19 @@ main,.site-footer{overflow-x:clip}
       </figure>
       <div class="kw-cards">
         <article class="kw-card reveal" id="kw-puszkina">
-          <figure class="ph round ph-round" style="--ratio:400/400" data-ph-file="img/hero-kwiatomat-puszkina.jpg"><svg class="ph-art" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-hero-kwiatomat-puszkina"/></svg><img src="img/hero-kwiatomat-puszkina.jpg" alt="Kwiatomat Lotos przy ul. Puszkina 1A – automat z bukietami czynny całą dobę" loading="lazy" decoding="async" onload="this.closest('.ph').classList.add('has-photo')" onerror="this.remove()"><figcaption class="ph-label"><span>Miejsce na zdjęcie</span><b>Kwiatomat przy ul.&nbsp;Puszkina 1A</b></figcaption></figure>
+          <figure class="ph round ph-round" style="--ratio:400/400" data-ph-file="img/hero-kwiatomat-puszkina.jpg"><svg class="ph-art" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#art-hero-kwiatomat-puszkina"/></svg><img src="img/hero-kwiatomat-puszkina.jpg" alt="Kwiatomat Lotos przy ul. Puszkina 1A – automat z bukietami czynny całą dobę" loading="lazy" decoding="async" onload="this.closest('.ph').classList.add('has-photo')" onerror="this.remove()"><figcaption class="ph-label"><span>Miejsce na zdjęcie</span><b>Kwiatomat przy ul.&nbsp;Puszkina&nbsp;1A</b></figcaption></figure>
           <div>
             <p class="eyebrow">1 · Przy kwiaciarni</p>
-            <h3>ul.&nbsp;Puszkina 1A</h3>
+            <h3>ul.&nbsp;Puszkina&nbsp;1A</h3>
             <p>Automat samoobsługowy, czynny całą dobę&nbsp;– przy naszej kwiaciarni na starym mieście.</p>
             <a class="btn btn-lantern btn-sm" href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Aleksandra%20Puszkina%201A%2C%2072-100%20Goleni%C3%B3w" data-route="0" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg>Wyznacz trasę</a>
           </div>
         </article>
         <article class="kw-card reveal" id="kw-szczecinska">
-          <div class="archbox wide ph-wide" style="--frame:rgba(226,180,103,.5)"><figure class="ph" style="--ratio:400/300" data-ph-file="img/kwiatomat-szczecinska-fontanna.jpg"><svg class="ph-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path class="k-n" d="M0 266H400" opacity=".6"/><path class="k-D" d="M25 236V252A95 16 0 0 0 215 252V236"/><ellipse class="k-D" cx="120" cy="236" rx="95" ry="16"/><ellipse class="k-b" cx="120" cy="236" rx="80" ry="10"/><path class="k-d" d="M110 232V182H130V232Z"/><path class="k-D" d="M80 180Q120 204 160 180Z"/><path class="k-n" d="M120 178V150"/><path class="k-b" d="M120 150C102 136 88 150 84 176M120 150C138 136 152 150 156 176M80 184C66 192 58 206 55 228M160 184C174 192 182 206 185 228" fill="none" stroke-dasharray="5 4"/><g class="k-b"><circle cx="70" cy="214" r="2"/><circle cx="170" cy="210" r="2"/><circle cx="96" cy="152" r="1.6"/><circle cx="146" cy="154" r="1.6"/></g><path class="k-n" d="M234 266V110M226 110H242L238 94H230Z"/><use href="#d-star" class="k-f" transform="translate(234 102)scale(0.3)"/><use href="#g-kiosk" class="k-D" transform="translate(318 266)scale(1)"/></svg><img src="img/kwiatomat-szczecinska-fontanna.jpg" alt="Kwiatomat Lotos przy ul. Szczecińskiej 4c, naprzeciw fontanny w centrum Goleniowa" loading="lazy" decoding="async" onload="this.closest('.ph').classList.add('has-photo')" onerror="this.remove()"><figcaption class="ph-label"><span>Miejsce na zdjęcie</span><b>Kwiatomat przy ul.&nbsp;Szczecińskiej 4c</b></figcaption></figure></div>
+          <div class="archbox wide ph-wide" style="--frame:rgba(226,180,103,.5)"><figure class="ph" style="--ratio:400/300" data-ph-file="img/kwiatomat-szczecinska-fontanna.jpg"><svg class="ph-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path class="k-n" d="M0 266H400" opacity=".6"/><path class="k-D" d="M25 236V252A95 16 0 0 0 215 252V236"/><ellipse class="k-D" cx="120" cy="236" rx="95" ry="16"/><ellipse class="k-b" cx="120" cy="236" rx="80" ry="10"/><path class="k-d" d="M110 232V182H130V232Z"/><path class="k-D" d="M80 180Q120 204 160 180Z"/><path class="k-n" d="M120 178V150"/><path class="k-b" d="M120 150C102 136 88 150 84 176M120 150C138 136 152 150 156 176M80 184C66 192 58 206 55 228M160 184C174 192 182 206 185 228" fill="none" stroke-dasharray="5 4"/><g class="k-b"><circle cx="70" cy="214" r="2"/><circle cx="170" cy="210" r="2"/><circle cx="96" cy="152" r="1.6"/><circle cx="146" cy="154" r="1.6"/></g><path class="k-n" d="M234 266V110M226 110H242L238 94H230Z"/><use href="#d-star" class="k-f" transform="translate(234 102)scale(0.3)"/><use href="#g-kiosk" class="k-D" transform="translate(318 266)scale(1)"/></svg><img src="img/kwiatomat-szczecinska-fontanna.jpg" alt="Kwiatomat Lotos przy ul. Szczecińskiej 4c, naprzeciw fontanny w centrum Goleniowa" loading="lazy" decoding="async" onload="this.closest('.ph').classList.add('has-photo')" onerror="this.remove()"><figcaption class="ph-label"><span>Miejsce na zdjęcie</span><b>Kwiatomat przy ul.&nbsp;Szczecińskiej&nbsp;4c</b></figcaption></figure></div>
           <div>
             <p class="eyebrow">2 · Naprzeciw fontanny</p>
-            <h3>ul.&nbsp;Szczecińska 4c</h3>
+            <h3>ul.&nbsp;Szczecińska&nbsp;4c</h3>
             <p>Automat samoobsługowy, czynny całą dobę&nbsp;– przy ruchliwej ulicy w&nbsp;centrum, naprzeciw fontanny.</p>
             <a class="btn btn-lantern btn-sm" href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Szczeci%C5%84ska%204c%2C%2072-100%20Goleni%C3%B3w" data-route="1" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg>Wyznacz trasę</a>
           </div>
@@ -1175,11 +1183,11 @@ main,.site-footer{overflow-x:clip}
     </div>
     <ul class="kw-facts">
       <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Bukiety odświeża codziennie zespół Lotos</li>
-      <li><svg class="ico" aria-hidden="true"><use href="#i-bouquet"/></svg>Ceny: <span class="ph-text" data-ph="Ceny bukietów w kwiatomatach">[od __ zł]</span></li>
+      <li><svg class="ico" aria-hidden="true"><use href="#i-bouquet"/></svg>Ceny: <span class="ph-text" data-ph="Ceny bukietów w kwiatomatach">[od __&nbsp;zł]</span></li>
       <li><svg class="ico" aria-hidden="true"><use href="#i-pay"/></svg>Płatność: <span class="ph-text" data-ph="Metody płatności w kwiatomacie">[karta / BLIK&nbsp;– do potwierdzenia]</span></li>
       <li><svg class="ico" aria-hidden="true"><use href="#i-vase"/></svg>Asortyment: <span class="ph-text" data-ph="Co zwykle jest w kwiatomatach (bukiety, róże, rośliny?)">[do potwierdzenia]</span></li>
     </ul>
-    <p class="kw-note">To automaty samoobsługowe&nbsp;– <strong>kwiaciarnię znajdziesz przy ul.&nbsp;Puszkina 1A</strong>.</p>
+    <p class="kw-note">To automaty samoobsługowe&nbsp;– <strong>kwiaciarnię znajdziesz przy ul.&nbsp;Puszkina&nbsp;1A</strong>.</p>
   </div>
 </section>
 
@@ -1190,7 +1198,7 @@ main,.site-footer{overflow-x:clip}
       <svg class="h-bud" viewBox="-18 -33 36 46" aria-hidden="true"><use href="#f-bud"/></svg>
       <p class="eyebrow">Galeria</p>
       <h2 id="gal-title">Arkada <em>bukietów</em></h2>
-      <p class="lead">Kilka przykładów tego, co układamy. Kliknij, aby powiększyć&nbsp;– zdjęcia z&nbsp;Instagrama @lotoskwiaciarnia wkrótce zastąpią rysunki.</p>
+      <p class="lead">Kilka przykładów tego, co układamy. Kliknij, aby powiększyć. <span class="ph-text" data-ph="Rysunki to miejsca na zdjęcia prac – np. z Instagrama @lotoskwiaciarnia (za zgodą właścicielki). Po wgraniu zdjęć usuń tę notkę.">[tu zdjęcia z&nbsp;Instagrama @lotoskwiaciarnia&nbsp;– do podmiany]</span></p>
     </div>
     <div class="filters" role="group" aria-label="Filtruj galerię">
       <button type="button" aria-pressed="true" data-filter="*">Wszystkie</button>
@@ -1317,11 +1325,11 @@ main,.site-footer{overflow-x:clip}
         <fieldset class="step">
           <legend><span class="step-no" aria-hidden="true"><b>2</b></span>Kolorystyka</legend>
           <div class="swatches">
-            <label class="swatch"><input type="radio" name="kolor" value="róż i pudrowy róż" data-c="#EDC6CF,#D997A9,#F7EAE6" checked><span><i style="--a:#EDC6CF;--b:#D997A9;--c:#F7EAE6"></i><b>Róże i&nbsp;pudry</b></span></label>
+            <label class="swatch"><input type="radio" name="kolor" value="róż i pudrowy róż" data-c="#EDC6CF,#D997A9,#F7EAE6" checked><span><i style="--a:#EDC6CF;--b:#D997A9;--c:#F7EAE6"></i><b>Pudrowy róż</b></span></label>
             <label class="swatch"><input type="radio" name="kolor" value="biel i zieleń" data-c="#FFFCFA,#F3EEE4,#D9E4D3"><span><i style="--a:#FFFCFA;--b:#D9E4D3;--c:#F3EEE4"></i><b>Biel i&nbsp;zieleń</b></span></label>
             <label class="swatch"><input type="radio" name="kolor" value="czerwień" data-c="#C9566B,#E59AA7,#F6D9DD"><span><i style="--a:#C9566B;--b:#E59AA7;--c:#9E2F45"></i><b>Czerwień</b></span></label>
             <label class="swatch"><input type="radio" name="kolor" value="pastele" data-c="#E4D3EC,#F6DFC6,#D6E5EE"><span><i style="--a:#E4D3EC;--b:#F6DFC6;--c:#D6E5EE"></i><b>Pastele</b></span></label>
-            <label class="swatch"><input type="radio" name="kolor" value="słoneczne żółcie i pomarańcze" data-c="#F2D27E,#F1B98E,#FFF3D6"><span><i style="--a:#F2D27E;--b:#F1B98E;--c:#E89A5C"></i><b>Słonecznie</b></span></label>
+            <label class="swatch"><input type="radio" name="kolor" value="słoneczne żółcie i pomarańcze" data-c="#F2D27E,#F1B98E,#FFF3D6"><span><i style="--a:#F2D27E;--b:#F1B98E;--c:#E89A5C"></i><b>Żółcie i&nbsp;pomarańcze</b></span></label>
             <label class="swatch"><input type="radio" name="kolor" value="fiolety i błękity" data-c="#C8B6E2,#A9BEDD,#E6DFF1"><span><i style="--a:#C8B6E2;--b:#A9BEDD;--c:#8D79B8"></i><b>Fiolety i&nbsp;błękity</b></span></label>
             <label class="swatch"><input type="radio" name="kolor" value="do wyboru florystki" data-c="#EDC6CF,#F2DDB0,#FFFCFA"><span><i style="--a:#EDC6CF;--b:#F2DDB0;--c:#D9E4D3"></i><b>Zostawiam florystce</b></span></label>
           </div>
@@ -1357,7 +1365,7 @@ main,.site-footer{overflow-x:clip}
           </div>
           <div class="delivery" data-delivery hidden>
             <div class="field" style="margin-top:1rem"><label for="f-address">Adres dostawy</label><textarea id="f-address" name="adres" rows="2" autocomplete="street-address" aria-describedby="e-address"></textarea><span class="field-err" id="e-address"></span></div>
-            <p class="step-hint" style="margin:0">Dostawa możliwa także w&nbsp;dniu zamówienia. Zasięg i&nbsp;koszt: <span class="ph-text" data-ph="Zasięg i koszt dostawy">[do potwierdzenia]</span> – potwierdzimy telefonicznie.</p>
+            <p class="step-hint" style="margin:0">Dostawa możliwa także w&nbsp;dniu zamówienia. Zasięg i&nbsp;koszt: <span class="ph-text" data-ph="Zasięg i koszt dostawy">[do potwierdzenia]</span>; szczegóły ustalimy przez telefon.</p>
           </div>
         </fieldset>
         <fieldset class="step">
@@ -1367,7 +1375,7 @@ main,.site-footer{overflow-x:clip}
         <fieldset class="step">
           <legend><span class="step-no" aria-hidden="true"><b>7</b></span>Twoje dane</legend>
           <div class="row2">
-            <div class="field"><label for="f-name">Imię</label><input id="f-name" name="imie" autocomplete="given-name" required aria-describedby="e-name"><span class="field-err" id="e-name"></span></div>
+            <div class="field"><label for="f-name">Imię</label><input id="f-name" name="imie" type="text" autocomplete="given-name" required aria-describedby="e-name"><span class="field-err" id="e-name"></span></div>
             <div class="field"><label for="f-phone">Telefon</label><input id="f-phone" name="telefon" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="e-phone"><span class="field-err" id="e-phone"></span></div>
           </div>
           <label class="check"><input type="checkbox" id="f-karta" name="karta"><span>Mam Zachodniopomorską Kartę Rodziny / Kartę Seniora</span></label>
@@ -1447,7 +1455,7 @@ main,.site-footer{overflow-x:clip}
         <h3><svg class="ico" aria-hidden="true"><use href="#i-pot"/></svg>Rośliny doniczkowe</h3>
         <ol>
           <li><span><strong>Podlewaj</strong>, gdy wierzchnia warstwa ziemi przeschnie&nbsp;– latem częściej, zimą rzadziej.</span></li>
-          <li><span><strong>Pilnuj odpływu</strong> – woda nie powinna stać w&nbsp;osłonce dłużej niż kwadrans.</span></li>
+          <li><span><strong>Pilnuj odpływu</strong>&nbsp;– woda nie powinna stać w&nbsp;osłonce dłużej niż kwadrans.</span></li>
           <li><span><strong>Storczyk</strong> podlewaj przez zanurzenie doniczki na 10–15&nbsp;minut, mniej więcej raz w&nbsp;tygodniu, i&nbsp;dobrze odsącz.</span></li>
           <li><span><strong>Światło</strong>: większość roślin lubi jasne miejsce bez ostrego, południowego słońca.</span></li>
         </ol>
@@ -1471,12 +1479,12 @@ main,.site-footer{overflow-x:clip}
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">FAQ</p>
-      <h2 id="faq-title">Pytania i <em>odpowiedzi</em></h2>
+      <h2 id="faq-title">Pytania i&nbsp;<em>odpowiedzi</em></h2>
     </div>
     <div class="faq-list reveal">
       <details>
         <summary>Jak zamówić kwiaty?</summary>
-        <div class="faq-a"><p>Zadzwoń do kwiaciarni: <a href="tel:+48914183968" data-tel="phone"><span data-text="phone">91&nbsp;418&nbsp;39&nbsp;68</span></a> lub na komórkę <a href="tel:+48668572086" data-tel="mobile"><span data-text="mobile">668&nbsp;572&nbsp;086</span></a>, napisz na <a href="mailto:kwiaciarnialotos.goleniow@wp.pl" data-mail><span data-text="email">kwiaciarnialotos.goleniow@wp.pl</span></a> albo zajrzyj do nas przy ul.&nbsp;Puszkina 1A. <a href="#zamow">Karta zamówienia</a> na tej stronie przygotuje gotową treść.</p></div>
+        <div class="faq-a"><p>Zadzwoń do kwiaciarni: <a href="tel:+48914183968" data-tel="phone"><span data-text="phone">91&nbsp;418&nbsp;39&nbsp;68</span></a> lub na komórkę <a href="tel:+48668572086" data-tel="mobile"><span data-text="mobile">668&nbsp;572&nbsp;086</span></a>, napisz na <a href="mailto:kwiaciarnialotos.goleniow@wp.pl" data-mail><span data-text="email">kwiaciarnialotos.goleniow@wp.pl</span></a> albo zajrzyj do nas przy ul.&nbsp;Puszkina&nbsp;1A. <a href="#zamow">Karta zamówienia</a> na tej stronie przygotuje gotową treść.</p></div>
       </details>
       <details>
         <summary>Czy dostarczacie kwiaty w&nbsp;dniu zamówienia?</summary>
@@ -1488,7 +1496,7 @@ main,.site-footer{overflow-x:clip}
       </details>
       <details>
         <summary>Jak działa kwiatomat?</summary>
-        <div class="faq-a"><p>To samoobsługowy automat z&nbsp;bukietami, czynny całą dobę. Wybierasz bukiet na ekranie dotykowym, płacisz elektronicznie i&nbsp;od razu go odbierasz. Kwiatomaty stoją przy ul.&nbsp;Puszkina 1A (przy kwiaciarni) i&nbsp;przy ul.&nbsp;Szczecińskiej 4c (naprzeciw fontanny). Bukiety odświeża codziennie zespół Lotos.</p></div>
+        <div class="faq-a"><p>To samoobsługowy automat z&nbsp;bukietami, czynny całą dobę. Wybierasz bukiet na ekranie dotykowym, płacisz elektronicznie i&nbsp;od razu go odbierasz. Kwiatomaty stoją przy ul.&nbsp;Puszkina&nbsp;1A (przy kwiaciarni) i&nbsp;przy ul.&nbsp;Szczecińskiej&nbsp;4c (naprzeciw fontanny). Bukiety odświeża codziennie zespół Lotos.</p></div>
       </details>
       <details>
         <summary>Jak mogę zapłacić?</summary>
@@ -1525,7 +1533,7 @@ main,.site-footer{overflow-x:clip}
       <div class="c-blocks">
         <div class="c-block reveal">
           <h3>Kwiaciarnia Lotos</h3>
-          <address data-text="address">ul.&nbsp;Aleksandra Puszkina 1A<br>72-100 Goleniów</address>
+          <address data-text="address">ul.&nbsp;Aleksandra Puszkina&nbsp;1A<br>72-100 Goleniów</address>
           <p class="muted small">Stare miasto, <span class="ph-verify" data-ph="Sąsiedztwo Bramy Wolińskiej – potwierdzić na miejscu">w&nbsp;sąsiedztwie Bramy Wolińskiej</span>.</p>
           <p><a class="btn btn-night btn-sm" href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Aleksandra%20Puszkina%201A%2C%2072-100%20Goleni%C3%B3w" data-route="shop" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg>Wyznacz trasę</a></p>
         </div>
@@ -1556,8 +1564,8 @@ main,.site-footer{overflow-x:clip}
         <div class="c-block reveal">
           <h3>Kwiatomaty 24/7</h3>
           <ul class="kw-mini">
-            <li><span>ul.&nbsp;Puszkina 1A <span class="muted">· przy kwiaciarni</span></span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Aleksandra%20Puszkina%201A%2C%2072-100%20Goleni%C3%B3w" data-route="0" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg>Trasa</a></li>
-            <li><span>ul.&nbsp;Szczecińska 4c <span class="muted">· naprzeciw fontanny</span></span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Szczeci%C5%84ska%204c%2C%2072-100%20Goleni%C3%B3w" data-route="1" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg>Trasa</a></li>
+            <li><span>ul.&nbsp;Puszkina&nbsp;1A <span class="muted">· przy kwiaciarni</span></span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Aleksandra%20Puszkina%201A%2C%2072-100%20Goleni%C3%B3w" data-route="0" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg>Trasa</a></li>
+            <li><span>ul.&nbsp;Szczecińska&nbsp;4c <span class="muted">· naprzeciw fontanny</span></span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Szczeci%C5%84ska%204c%2C%2072-100%20Goleni%C3%B3w" data-route="1" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg>Trasa</a></li>
           </ul>
           <h3 style="margin-top:1.4rem">Znajdź nas</h3>
           <div class="socials">
@@ -1565,7 +1573,7 @@ main,.site-footer{overflow-x:clip}
             <a class="social" href="https://www.instagram.com/lotoskwiaciarnia/" target="_blank" rel="noopener" data-social="instagram"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg>@lotoskwiaciarnia</a>
           </div>
         </div>
-        <p class="c-block full muted small reveal">Kwiaciarnia „LOTOS” Katarzyna Walczak · NIP <span data-text="nip">8561815347</span></p>
+        <p class="c-block full muted small reveal">Kwiaciarnia „LOTOS” Katarzyna Walczak · NIP&nbsp;<span data-text="nip">8561815347</span></p>
       </div>
       <div class="map-slot reveal" data-map-slot>
         <div class="map-ph">
@@ -1588,7 +1596,7 @@ main,.site-footer{overflow-x:clip}
   <div class="wrap f-grid">
     <div class="f-brand">
       <a class="brand" href="#tresc"><svg class="brand-mark" aria-hidden="true"><use href="#logo"/></svg><span class="brand-text"><span class="brand-name">Lotos</span><span class="brand-sub">KWIACIARNIA · GOLENIÓW</span></span></a>
-      <p>Kwiaty spod Bramy Wolińskiej. W&nbsp;dzień zapraszamy do kwiaciarni, wieczorem i&nbsp;nocą&nbsp;– do kwiatomatu.</p>
+      <p><span class="ph-verify" data-ph="Sąsiedztwo Bramy Wolińskiej do potwierdzenia na miejscu (Targeo: „Plac Bramy Wolińskiej 1a”). Jeśli lokal nie stoi przy bramie, zmień hasło, np. na „Spokój lotosu w każdym bukiecie”.">Kwiaty spod Bramy Wolińskiej.</span> W&nbsp;dzień zapraszamy do kwiaciarni, wieczorem i&nbsp;nocą&nbsp;– do kwiatomatu.</p>
     </div>
     <div>
       <p class="f-title">Kontakt</p>
@@ -1597,7 +1605,7 @@ main,.site-footer{overflow-x:clip}
         <li><a href="tel:+48668572086" data-tel="mobile"><span data-text="mobile">668&nbsp;572&nbsp;086</span></a></li>
         <li><a href="mailto:kwiaciarnialotos.goleniow@wp.pl" data-mail><span data-text="email">kwiaciarnialotos.goleniow@wp.pl</span></a></li>
       </ul>
-      <p class="f-small" style="margin-top:.6rem">ul.&nbsp;Aleksandra Puszkina 1A<br>72-100 Goleniów</p>
+      <p class="f-small" style="margin-top:.6rem">ul.&nbsp;Aleksandra Puszkina&nbsp;1A<br>72-100 Goleniów</p>
     </div>
     <div>
       <p class="f-title">Godziny</p>
@@ -1679,9 +1687,15 @@ const CONFIG = {
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement;
 
-  /* Polska typografia: twarda spacja po jednoliterowych słowach i przed półpauzą */
+  /* Polska typografia: twarda spacja po jednoliterowych słowach, przed półpauzą,
+     między liczbą a jednostką, po „ul.” / „św.” i między nazwą ulicy a numerem */
   function nb(s) {
-    return String(s).replace(/(^|[\s(„])([aiouwzAIOUWZ]) /g, '$1$2\u00A0').replace(/(^|[\s(„])([aiouwzAIOUWZ]) /g, '$1$2\u00A0').replace(/ – /g, '\u00A0– ').replace(/(\d) (dni|dzień|zł|r\.)/g, '$1\u00A0$2');
+    return String(s)
+      .replace(/(^|[\s(„])([aiouwzAIOUWZ]) /g, '$1$2\u00A0').replace(/(^|[\s(„])([aiouwzAIOUWZ]) /g, '$1$2\u00A0')
+      .replace(/ – /g, '\u00A0– ')
+      .replace(/(\d) (dni|dzień|zł|r\.)/g, '$1\u00A0$2')
+      .replace(/(^|\s)(ul\.|św\.) /g, '$1$2\u00A0')
+      .replace(/(Puszkina|Szczecińska|Szczecińską|Szczecińskiej) (?=\d)/g, '$1\u00A0');
   }
   var DAY_NAMES = ['niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota'];
   var DAY_ACC = ['w niedzielę', 'w poniedziałek', 'we wtorek', 'w środę', 'w czwartek', 'w piątek', 'w sobotę'];
@@ -1733,8 +1747,9 @@ const CONFIG = {
       if (h === null && unknown === null) { unknown = wd; continue; }
       if (h) {
         var when = (i === 1 ? 'jutro' : DAY_ACC[wd]) + ' o ' + hm(h[0]);
-        var extra = unknown !== null ? ' (' + DAY_NAMES[unknown] + ' – do potwierdzenia)' : '';
-        return { state: 'closed', text: 'Zamknięte · otwieramy ' + when + extra, short: 'Otwieramy ' + when };
+        if (unknown !== null) // np. sobota wieczorem: niedziela „do potwierdzenia” – nie twierdzimy, że będzie zamknięte
+          return { state: 'closed', text: 'Zamknięte · ' + DAY_NAMES[unknown] + ' – godziny do potwierdzenia, ' + DAY_ACC[wd] + ' od ' + hm(h[0]), short: 'Teraz zamknięte' };
+        return { state: 'closed', text: 'Zamknięte · otwieramy ' + when, short: 'Otwieramy ' + when };
       }
     }
     return { state: 'closed', text: 'Zamknięte', short: 'Zamknięte' };
@@ -1929,7 +1944,7 @@ const CONFIG = {
     });
     return out.sort(function (a, b) { return a.diff - b.diff; }).slice(0, n);
   }
-  var inDays = function (n) { return n === 0 ? 'dziś' : n === 1 ? 'jutro' : 'za ' + n + ' dni'; };
+  var inDays = function (n) { return n === 0 ? 'dziś' : n === 1 ? 'jutro' : nb('za ' + n + ' dni'); };
   function renderOccasions(t) {
     var ol = $('[data-occasions]'); if (!ol) return [];
     var list = upcoming(t, 4);
@@ -2063,7 +2078,7 @@ const CONFIG = {
     var active = null;
     var openPin = function (p) {
       var k = CONFIG.kwiatomaty[+p.getAttribute('data-pin')];
-      $('[data-mc-title]', card).textContent = k.address;
+      $('[data-mc-title]', card).textContent = nb(k.address);
       $('[data-mc-text]', card).textContent = nb(k.note);
       $('[data-mc-route]', card).href = route(k.query);
       $$('.pin', wrap).forEach(function (x) { x.classList.toggle('is-active', x === p); x.setAttribute('aria-expanded', x === p ? 'true' : 'false'); });
@@ -2120,6 +2135,7 @@ const CONFIG = {
         var b = e.target.closest('[data-go]'); if (!b) return;
         var el = $('[data-ed="' + b.getAttribute('data-go') + '"]'); if (!el) return;
         var det = el.closest('details'); if (det) det.open = true;
+        if (el.closest('[data-delivery]') && el.closest('[hidden]')) { var dv = $('input[name="odbior"][value="dostawa"]'); if (dv) { dv.checked = true; dv.dispatchEvent(new Event('change', { bubbles: true })); } }
         el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         el.classList.remove('flash-target'); void el.offsetWidth; el.classList.add('flash-target');
       });

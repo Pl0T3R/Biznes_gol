@@ -49,6 +49,7 @@ Zdjęcia dokłada się do folderu `img/` (lista plików: [`img/README.md`](img/R
    - Nic nie jest nigdzie wysyłane: formularz tylko przygotowuje treść w przeglądarce.
    - Po poprawnym wypełnieniu raz spada kilka piórek (wyłączone przy „ograniczonym ruchu” w systemie).
 8. **Kalendarz okazji**: 4 najbliższe święta kwiatowe z odliczaniem dni. Złota aureola domyka się, gdy termin się zbliża.
+   Bez JavaScriptu widać same daty (bez odliczania), więc nic się nie dezaktualizuje.
    Liczy się dla dowolnej daty, z Wielkanocą (algorytm Meeusa/Jonesa/Butchera) i końcem roku szkolnego
    (ostatni piątek czerwca). Przycisk „Ułóż bukiet na tę okazję” ustawia konfigurator.
 9. **Galeria „Spod naszych rąk”**: filtry (Wszystkie / Bukiety / Rośliny / Upominki / Okazje / Sztuczne)
@@ -84,6 +85,8 @@ stopce, plakietce „Otwarte”, tabeli godzin i konfiguratorze.
 - `hoursNotes` to notatki przy sobocie i niedzieli. Po potwierdzeniu usuń je albo opróżnij.
 - Dane strukturalne **JSON-LD** w `<head>` są statyczne. Po zmianie danych popraw je też tam.
 - Kolory i fonty są w `:root` na początku `<style>`.
+- Teksty wstawiane przez skrypt (np. podpowiedzi w kalendarzu, plakietka „Otwarte”) przechodzą przez funkcję `nb()`,
+  która dokłada twarde spacje po „w”, „z”, „i”, „o” itd. W HTML używaj po prostu `&nbsp;`, tak jak w reszcie pliku.
 
 ## Placeholdery do uzupełnienia
 
@@ -108,7 +111,8 @@ Pełna lista nazw, proporcji i rozmiarów: [`img/README.md`](img/README.md).
 | Opinie | 3 prawdziwe opinie klientów (treść i podpis) | Za zgodą autorów, z podaniem źródła |
 | FAQ | Czas realizacji zamówień | |
 | FAQ | Formy płatności (gotówka, karta, BLIK, przelew) | Karta i NFC mają tylko jedno źródło, więc nie zostały podane |
-| FAQ | Zamówienia przez Messengera, SMS i e-mail | Przyciski SMS i e-mail działają, ale warto potwierdzić, że właścicielka chce tak przyjmować zamówienia |
+| Konfigurator / FAQ | Zamówienia przez SMS, e-mail i Messengera | Przyciski SMS i e-mail działają, ale warto potwierdzić, że właścicielka chce tak przyjmować zamówienia |
+| FAQ | Zakres oprawy pogrzebowej (wieńce, wiązanki) | Na razie tylko „zadzwoń i zapytaj”. Uzupełnić po rozmowie albo usunąć pytanie |
 | FAQ / Kontakt | Godziny: soboty, niedziele, przed świętami | Obecne godziny pochodzą z jednego katalogu |
 | Kontakt | Jak trafić do lokalu 3 (wejście, szyld, parking) | |
 | Stopka | „Projekt i wykonanie: [Twoje studio]” | Twoja nazwa i link |
@@ -185,10 +189,11 @@ Dostępności **nie sprawdzałem**, trzeba ją zweryfikować u rejestratora.
 
 ## Uwagi techniczne
 
-- Jeden plik `index.html` (ok. 220 KB, po kompresji gzip ok. 55 KB; większość to ręcznie rysowane ilustracje SVG). Style i skrypty są w środku, bez bibliotek i bez CDN.
+- Jeden plik `index.html` (ok. 222 KB, po kompresji gzip ok. 55 KB; ok. 53 KB to ręcznie rysowane ilustracje SVG). Style i skrypty są w środku, bez bibliotek i bez CDN.
   Z zewnątrz ładują się tylko fonty Google i mapa Google, i to dopiero po kliknięciu.
 - Ilustracje zastępcze to rysunki SVG w jednym „sprite’cie” na początku `<body>`, wielokrotnie używane przez `<use>`.
 - Brakujące zdjęcia: przeglądarka zgłasza w konsoli błąd 404 dla każdego pliku z `img/`, którego jeszcze nie ma.
   Tak ma być, zdjęcie po prostu zostaje zastąpione ilustracją. Błędy znikną po dodaniu zdjęć.
-- Testowane w Chromium (desktop 1440 px i telefon 390 px): bez poziomego przewijania i bez błędów JS.
-  Kod przechodzi html-validate i axe-core (WCAG 2.1 AA) bez błędów.
+- Testowane w Chromium (320–1920 px, m.in. 1440, 1024 i 390 px): bez poziomego przewijania i bez błędów JS.
+  Kod przechodzi html-validate i axe-core (WCAG 2.1/2.2 AA) bez błędów, także z otwartym menu, podglądem zdjęć,
+  panelem edycji i komunikatami błędów formularza. Na telefonie fokus klawiatury nie chowa się pod dolnym paskiem akcji.

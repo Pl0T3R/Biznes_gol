@@ -92,7 +92,7 @@ p { margin: 0 0 1em; }
 button, input, textarea { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--lila); outline-offset: 3px; }
 [tabindex="-1"]:focus { outline: none; }
-[data-cfg="nip"], .nw { white-space: nowrap; }
+[data-cfg="nip"], [data-cfg="cityLine"], [data-cfg="phoneDisplay"], .nw { white-space: nowrap; }
 .wrap { width: min(100% - 2 * var(--gut), var(--maxw)); margin-inline: auto; }
 .vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip { position: absolute; left: 12px; top: -80px; z-index: 100; background: var(--lila); color: #fff; padding: 12px 18px; border-radius: 999px; font-weight: 700; text-decoration: none; }
@@ -167,7 +167,7 @@ h2 em, h1 em { font-style: italic; color: var(--lila); }
 .site-head.is-compact { border-bottom-color: var(--linia-zl); box-shadow: 0 12px 30px -26px rgba(42, 34, 56, .5); }
 .head-in { display: flex; align-items: center; gap: 20px; min-height: 86px; transition: min-height .3s var(--ease); }
 .is-compact .head-in { min-height: 64px; }
-.brand { display: inline-flex; flex-direction: column; align-items: flex-start; text-decoration: none; color: var(--atrament); line-height: 1; padding: 6px 0; }
+.brand { display: inline-flex; flex-direction: column; justify-content: center; align-items: flex-start; min-height: 44px; text-decoration: none; color: var(--atrament); line-height: 1; padding: 6px 0; }
 .brand:hover { color: var(--atrament); }
 .wm { display: inline-flex; align-items: baseline; font: italic 500 2rem/1 var(--font-display); letter-spacing: .005em; white-space: nowrap; }
 .wm-a { position: relative; }
@@ -335,7 +335,7 @@ h2 em, h1 em { font-style: italic; color: var(--lila); }
 .field label small { font-weight: 400; color: var(--pioro); }
 .field input, .field textarea { width: 100%; min-height: 48px; padding: .6em .9em; border: 1px solid rgba(97, 90, 112, .5); border-radius: 14px; background: #fff; color: var(--atrament); transition: border-color .2s, box-shadow .2s; }
 .field textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
-.field input:focus, .field textarea:focus { outline: none; border-color: var(--lila); box-shadow: 0 0 0 3px rgba(107, 74, 128, .32); }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--lila); box-shadow: 0 0 0 1px var(--lila), 0 0 0 5px rgba(107, 74, 128, .22); }
 .field [aria-invalid="true"] { border-color: var(--blad); box-shadow: 0 0 0 3px rgba(163, 50, 74, .12); }
 .err { color: var(--blad); font-size: .88rem; font-weight: 500; min-height: 0; }
 .err:empty { display: none; }
@@ -511,7 +511,8 @@ details[open] .pm { transform: rotate(45deg); }
 .info-list .ib { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--mgielka); color: var(--lila); }
 .info-list .ico { width: 19px; height: 19px; }
 .info-list small { display: block; font-size: .8rem; color: var(--pioro); letter-spacing: .04em; }
-.info-list a { display: inline-block; padding: 4px 0; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.info-list a { display: inline-flex; align-items: center; min-height: 44px; padding: 2px 0; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.info-list small + a { margin-top: -6px; }
 .info-list a:hover { text-decoration: underline; }
 .big-phone { font: 400 1.6rem/1.2 var(--font-display) !important; color: var(--atrament) !important; letter-spacing: .01em; }
 .hours-box { border-top: 1px solid var(--linia-zl); padding-top: 18px; }
@@ -542,7 +543,7 @@ details[open] .pm { transform: rotate(45deg); }
 .foot-tag { font: italic 400 1.1rem/1.45 var(--font-display); margin: 16px 0 0; color: rgba(247, 245, 250, .9); max-width: 22em; }
 .foot-h { font: 700 .875rem/1.3 var(--font-body); letter-spacing: .18em; text-transform: uppercase; color: var(--roz); margin: 6px 0 12px; }
 .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-.foot ul a { display: inline-flex; align-items: center; min-height: 40px; }
+.foot ul a { display: inline-flex; align-items: center; min-height: 44px; }
 .foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; margin-top: 48px; padding-top: 22px; border-top: 1px solid rgba(242, 215, 211, .18); font-size: .88rem; color: rgba(247, 245, 250, .75); }
 .foot .ph-text { background: rgba(242, 215, 211, .14); border-bottom-color: var(--roz); }
 
@@ -629,6 +630,7 @@ details[open] .pm { transform: rotate(45deg); }
   .ideas { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
+  html { scroll-padding-bottom: 96px; }
   .mbar { display: grid; }
   .foot { padding-bottom: calc(102px + env(safe-area-inset-bottom)); }
   .head-call span { display: none; }
@@ -660,8 +662,9 @@ details[open] .pm { transform: rotate(45deg); }
   .cameo .ph .ph-label { display: none; }
   .cameo h3 { margin: 0 0 4px; font-size: 1.25rem; }
   .cameo p { margin-bottom: 6px; font-size: .92rem; }
-  .cameo .link-arrow { min-height: 36px; }
   .ask-grid { grid-template-columns: minmax(0, 1fr); }
+  .deliv { grid-template-columns: 72px minmax(0, 1fr); gap: 14px 16px; padding: 18px 16px; }
+  .deliv-ill { width: 72px; height: 72px; align-self: start; }
   .facts { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .facts div { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
   .seal { width: 104px; height: 104px; font-size: .78rem; padding: 14px; left: -2px; }
@@ -1020,7 +1023,7 @@ details[open] .pm { transform: rotate(45deg); }
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">Kwiaciarnia przy Parku <span class="nw">750-lecia</span> <span class="eb-sep">·</span> <span class="eb-city">Goleniów</span></p>
-      <h1 id="hero-title">Kwiaty z&nbsp;<em>anielską</em> starannością</h1>
+      <h1 id="hero-title">Kwiaty <span class="nw">z&nbsp;<em>anielską</em></span> starannością</h1>
       <p class="hero-sub">Bukiety układane na indywidualne zamówienie, kwiaty cięte i&nbsp;doniczkowe, karnety i&nbsp;figurki aniołów&nbsp;– prezent w&nbsp;jednym miejscu, przy ul.&nbsp;Jana Matejki 2A w&nbsp;Goleniowie.</p>
       <div class="hero-cta">
         <a class="btn btn--primary" href="#zamow">Zamów bukiet <svg class="ico" aria-hidden="true"><use href="#ic-arrow"/></svg></a>
@@ -1154,7 +1157,7 @@ details[open] .pm { transform: rotate(45deg); }
           <figcaption class="ph-label"><span>Miejsce na zdjęcie</span>Storczyk w&nbsp;doniczce</figcaption>
         </figure>
         <h3>Kwiaty doniczkowe</h3>
-        <p>Rośliny kwitnące i&nbsp;zielone&nbsp;– na prezent albo dla siebie. Podpowiemy, gdzie je postawić i&nbsp;jak o&nbsp;nie dbać.</p>
+        <p>Kwiaty w&nbsp;doniczkach&nbsp;– na prezent albo dla siebie. Podpowiemy, gdzie je postawić i&nbsp;jak o&nbsp;nie dbać.</p>
         <p class="price">od <span class="ph-text" data-ph="Cena roślin doniczkowych (od … zł)">__&nbsp;zł</span></p>
         <a class="link-arrow" href="#porady">Jak dbać o&nbsp;rośliny <svg class="ico" aria-hidden="true"><use href="#ic-arrow"/></svg></a>
       </li>
@@ -1301,7 +1304,7 @@ details[open] .pm { transform: rotate(45deg); }
       <p class="eyebrow">Zamów bukiet</p>
       <h2 id="zamow-title">Ułóżmy bukiet <em>razem</em></h2>
       <div class="feather-rule" aria-hidden="true"><svg viewBox="0 0 120 24"><use href="#feather-h"/></svg></div>
-      <p class="lead">Zaznacz, co już wiesz&nbsp;– resztę ustalimy przez telefon. Formularz przygotuje gotową wiadomość SMS lub e-mail, a&nbsp;Ty zdecydujesz, kiedy ją wysłać.</p>
+      <p class="lead">Zaznacz, co już wiesz&nbsp;– resztę ustalimy przez telefon. Formularz przygotuje gotową wiadomość SMS lub <span class="nw">e-mail</span>, a&nbsp;Ty zdecydujesz, kiedy ją wysłać.</p>
     </header>
     <noscript><p class="noscript-box">Konfigurator działa po włączeniu JavaScriptu. Możesz też po prostu zadzwonić: <a href="tel:+48607647115">607&nbsp;647&nbsp;115</a>.</p></noscript>
     <div class="order-grid">
@@ -1424,7 +1427,7 @@ details[open] .pm { transform: rotate(45deg); }
           <p class="karnet-head" id="preview-title"><svg viewBox="0 0 30 9" aria-hidden="true"><use href="#logo-halo"/></svg>Wiadomość do kwiaciarni</p>
           <div id="msg-preview">
             <p class="msg-intro">Dzień dobry, proszę o&nbsp;przygotowanie bukietu.</p>
-            <p class="msg-empty">Zaznacz kilka opcji obok, a&nbsp;tu pojawi się gotowa wiadomość.</p>
+            <p class="msg-empty">Zaznacz kilka opcji w&nbsp;formularzu, a&nbsp;tu pojawi się gotowa wiadomość.</p>
           </div>
         </div>
         <div class="order-actions">
@@ -1434,7 +1437,7 @@ details[open] .pm { transform: rotate(45deg); }
           <a class="btn btn--ghost" id="act-call" href="tel:+48607647115" data-href="tel"><svg class="ico" aria-hidden="true"><use href="#ic-phone"/></svg>Zadzwoń</a>
         </div>
         <p class="order-status" id="order-status" role="status" aria-live="polite"></p>
-        <p class="order-privacy">Nic nie wysyła się samo: formularz tylko przygotowuje treść w&nbsp;Twojej przeglądarce, a&nbsp;o&nbsp;wysłaniu decydujesz Ty. Zamówienie jest przyjęte dopiero wtedy, gdy kwiaciarnia je potwierdzi. <span class="ph-text" data-ph="Czy kwiaciarnia przyjmuje zamówienia SMS-em i e-mailem (i jak je potwierdza)?">[zamówienia SMS-em i&nbsp;e-mailem&nbsp;– do potwierdzenia]</span></p>
+        <p class="order-privacy">Nic nie wysyła się samo: formularz tylko przygotowuje treść w&nbsp;Twojej przeglądarce, a&nbsp;o&nbsp;wysłaniu decydujesz Ty. Zamówienie jest przyjęte dopiero wtedy, gdy kwiaciarnia je potwierdzi. <span class="ph-text" data-ph="Czy kwiaciarnia przyjmuje zamówienia SMS-em i e-mailem (i jak je potwierdza)?">[zamówienia <span class="nw">SMS-em</span> i&nbsp;<span class="nw">e-mailem</span>&nbsp;– do potwierdzenia]</span></p>
       </aside>
     </div>
   </div>
@@ -1449,12 +1452,12 @@ details[open] .pm { transform: rotate(45deg); }
       <div class="feather-rule" aria-hidden="true"><svg viewBox="0 0 120 24"><use href="#feather-h"/></svg></div>
       <p class="lead">Najbliższe kwiatowe święta z&nbsp;odliczaniem&nbsp;– złota aureola domyka się, gdy dzień się zbliża. Zamów wcześniej, a&nbsp;bukiet będzie gotowy na czas.</p>
     </header>
-    <!-- Lista wypełnia się automatycznie (JS) dla dzisiejszej daty; poniżej wersja zapasowa bez JS. -->
+    <!-- Lista wypełnia się automatycznie (JS) dla dzisiejszej daty i liczy dni do okazji. Poniżej wersja zapasowa bez JS: same daty, bez odliczania (to nie zdezaktualizuje się z dnia na dzień). -->
     <ol class="occ-list" id="occ-list">
-      <li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/><circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="22.9"/></svg><p class="occ-days"><strong>7</strong><span>dni</span></p></div><h3>Dzień Edukacji Narodowej</h3><p class="occ-date">14 października</p><p class="occ-tip">Pojedyncza róża, mały bukiet albo roślina w&nbsp;doniczce&nbsp;– z&nbsp;podziękowaniem dla nauczyciela.</p><a class="btn btn--ghost btn--sm" href="#zamow" data-preset="Dzień Edukacji Narodowej">Ułóż bukiet na tę okazję</a></li>
-      <li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/><circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="81.7"/></svg><p class="occ-days"><strong>25</strong><span>dni</span></p></div><h3>Wszystkich Świętych</h3><p class="occ-date">1 listopada</p><p class="occ-tip">Zapytaj o&nbsp;stroiki i&nbsp;wiązanki&nbsp;– ustalimy szczegóły przez telefon. Kwiaty sztuczne przetrwają listopadową pogodę.</p><a class="btn btn--ghost btn--sm" href="#zamow" data-preset="Wszystkich Świętych">Ułóż bukiet na tę okazję</a></li>
-      <li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/><circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="254.8"/></svg><p class="occ-days"><strong>78</strong><span>dni</span></p></div><h3>Boże Narodzenie</h3><p class="occ-date">24 grudnia</p><p class="occ-tip">Gwiazda betlejemska w&nbsp;doniczce i&nbsp;figurka anioła na prezent&nbsp;– zapytaj o&nbsp;dostępność.</p><a class="btn btn--ghost btn--sm" href="#zamow" data-preset="Boże Narodzenie">Ułóż bukiet na tę okazję</a></li>
-      <li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/><circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="316.9"/></svg><p class="occ-days"><strong>106</strong><span>dni</span></p></div><h3>Dzień Babci</h3><p class="occ-date">21 stycznia</p><p class="occ-tip">Bukiet w&nbsp;ulubionych kolorach babci i&nbsp;karnet z&nbsp;kilkoma słowami od wnuków.</p><a class="btn btn--ghost btn--sm" href="#zamow" data-preset="Dzień Babci">Ułóż bukiet na tę okazję</a></li>
+      <li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/><circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg><p class="occ-days"><strong>14</strong><span>paź</span></p></div><h3>Dzień Edukacji Narodowej</h3><p class="occ-date">14 października</p><p class="occ-tip">Pojedyncza róża, mały bukiet albo roślina w&nbsp;doniczce&nbsp;– z&nbsp;podziękowaniem dla nauczyciela.</p><a class="btn btn--ghost btn--sm" href="#zamow" data-preset="Dzień Edukacji Narodowej">Ułóż bukiet na tę okazję</a></li>
+      <li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/><circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg><p class="occ-days"><strong>1</strong><span>lis</span></p></div><h3>Wszystkich Świętych</h3><p class="occ-date">1 listopada</p><p class="occ-tip">Zapytaj o&nbsp;stroiki i&nbsp;wiązanki&nbsp;– ustalimy szczegóły przez telefon. Kwiaty sztuczne przetrwają listopadową pogodę.</p><a class="btn btn--ghost btn--sm" href="#zamow" data-preset="Wszystkich Świętych">Ułóż bukiet na tę okazję</a></li>
+      <li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/><circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg><p class="occ-days"><strong>24</strong><span>gru</span></p></div><h3>Boże Narodzenie</h3><p class="occ-date">24 grudnia</p><p class="occ-tip">Gwiazda betlejemska w&nbsp;doniczce i&nbsp;figurka anioła na prezent&nbsp;– zapytaj o&nbsp;dostępność.</p><a class="btn btn--ghost btn--sm" href="#zamow" data-preset="Boże Narodzenie">Ułóż bukiet na tę okazję</a></li>
+      <li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/><circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg><p class="occ-days"><strong>21</strong><span>sty</span></p></div><h3>Dzień Babci</h3><p class="occ-date">21 stycznia</p><p class="occ-tip">Bukiet w&nbsp;ulubionych kolorach babci i&nbsp;karnet z&nbsp;kilkoma słowami od wnuków.</p><a class="btn btn--ghost btn--sm" href="#zamow" data-preset="Dzień Babci">Ułóż bukiet na tę okazję</a></li>
     </ol>
   </div>
 </section>
@@ -1520,7 +1523,7 @@ details[open] .pm { transform: rotate(45deg); }
           <figcaption class="ph-label"><span>Miejsce na zdjęcie</span>Bukiet zapakowany na prezent</figcaption>
         </figure>
         <button class="g-open" type="button" aria-label="Powiększ: Bukiet zapakowany na prezent"></button>
-        <p class="g-cap"><span>Upominki</span>Zapakowany na prezent</p>
+        <p class="g-cap"><span>Upominki</span>Bukiet na prezent</p>
       </li>
       <li class="g-item rv" data-cat="okazje" data-catname="Okazje">
         <figure class="ph" style="--ar:1/1" data-file="galeria-bukiet-urodzinowy.jpg">
@@ -1659,7 +1662,7 @@ details[open] .pm { transform: rotate(45deg); }
     <div class="faq-list">
       <details class="rv">
         <summary>Jak zamówić bukiet?<span class="pm" aria-hidden="true"></span></summary>
-        <div class="faq-a"><p>Najprościej zadzwonić pod numer <a href="tel:+48607647115" data-href="tel">607&nbsp;647&nbsp;115</a> albo zajrzeć do kwiaciarni przy ul.&nbsp;Jana Matejki 2A. Możesz też wypełnić formularz <a href="#zamow">„Ułóżmy bukiet razem”</a>&nbsp;– przygotuje gotową wiadomość SMS lub e-mail, którą wyślesz jednym kliknięciem.</p><p><span class="ph-text" data-ph="Czy zamówienia przyjmowane są SMS-em, e-mailem i przez Messengera?">[zamówienia SMS-em, e-mailem i&nbsp;przez Messengera&nbsp;– do potwierdzenia]</span></p></div>
+        <div class="faq-a"><p>Najprościej zadzwonić pod numer <a href="tel:+48607647115" data-href="tel">607&nbsp;647&nbsp;115</a> albo zajrzeć do kwiaciarni przy ul.&nbsp;Jana Matejki 2A. Możesz też wypełnić formularz <a href="#zamow">„Ułóżmy bukiet razem”</a>&nbsp;– przygotuje gotową wiadomość SMS lub <span class="nw">e-mail</span>, którą wyślesz jednym kliknięciem.</p><p><span class="ph-text" data-ph="Czy zamówienia przyjmowane są SMS-em, e-mailem i przez Messengera?">[zamówienia <span class="nw">SMS-em</span>, <span class="nw">e-mailem</span> i&nbsp;przez Messengera&nbsp;– do potwierdzenia]</span></p></div>
       </details>
       <details class="rv">
         <summary>Z&nbsp;jakim wyprzedzeniem warto zamawiać?<span class="pm" aria-hidden="true"></span></summary>
@@ -1683,7 +1686,7 @@ details[open] .pm { transform: rotate(45deg); }
       </details>
       <details class="rv">
         <summary>W&nbsp;jakich godzinach jesteście otwarci?<span class="pm" aria-hidden="true"></span></summary>
-        <div class="faq-a"><p>Od poniedziałku do piątku 9:00–17:00, w&nbsp;soboty <span class="ph-text" data-ph="Potwierdzić godziny w soboty">9:00–14:00</span>. <span class="ph-text" data-ph="Godziny otwarcia oraz godziny przed świętami – potwierdzić z właścicielką">[godziny i&nbsp;godziny przedświąteczne&nbsp;– do potwierdzenia]</span></p></div>
+        <div class="faq-a"><p>Od poniedziałku do piątku 9:00–17:00, w&nbsp;soboty <span class="ph-text" data-ph="Potwierdzić godziny w soboty">9:00–14:00</span>. <span class="ph-text" data-ph="Godziny otwarcia oraz godziny przed świętami – potwierdzić z właścicielką">[godziny, także przed świętami&nbsp;– do potwierdzenia]</span></p></div>
       </details>
     </div>
   </div>
@@ -1878,13 +1881,24 @@ details[open] .pm { transform: rotate(45deg); }
   var NB = '\u00a0'; // twarda spacja
   // Polska odmiana liczebników: 1 miejsce, 2–4 miejsca, 5+ miejsc (ale 12–14 miejsc)
   function plural(n, one, few, many) { if (n === 1) return one; var d = n % 10, h = n % 100; return d >= 2 && d <= 4 && (h < 12 || h > 14) ? few : many; }
+  // Polska typografia dla tekstów wstawianych przez JS (twarde spacje jak w HTML):
+  // po jednoliterowych spójnikach i przyimkach, przed półpauzą, po skrótach, między liczbą a słowem, w numerze telefonu i kodzie pocztowym.
+  var ONE = /(^|[\s(„\u00a0–])([aiouwzAIOUWZ]) /g;
+  function nb(str) {
+    var t = String(str);
+    t = t.replace(ONE, '$1$2' + NB).replace(ONE, '$1$2' + NB); // dwa przebiegi: „i w domu”
+    return t.replace(/ ([–—])/g, NB + '$1')
+      .replace(/(^|[\s(])(ul\.|lok\.|nr|tel\.|ok\.|np\.) /g, '$1$2' + NB)
+      .replace(/(\d) (?=[a-ząćęłńóśźż\d])/g, '$1' + NB)
+      .replace(/(\d{2}-\d{3}) /g, '$1' + NB);
+  }
 
   /* ---------- 1. Dane z CONFIG → strona ---------- */
   function routeUrl() { return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(CONFIG.mapsQuery); }
   function applyConfig() {
     var vals = {
-      phoneDisplay: CONFIG.phoneDisplay, email: CONFIG.email, street: CONFIG.street,
-      cityLine: CONFIG.postalCode + ' ' + CONFIG.city, nip: CONFIG.nip, owner: CONFIG.owner
+      phoneDisplay: CONFIG.phoneDisplay.replace(/ /g, NB), email: CONFIG.email, street: nb(CONFIG.street),
+      cityLine: CONFIG.postalCode + NB + CONFIG.city, nip: CONFIG.nip, owner: CONFIG.owner
     };
     $$('[data-cfg]').forEach(function (el) { var v = vals[el.getAttribute('data-cfg')]; if (v) el.textContent = v; });
     var hrefs = {
@@ -1916,10 +1930,10 @@ details[open] .pm { transform: rotate(45deg); }
   function openInfo() {
     var n = warsawNow(), today = CONFIG.hours[n.wd];
     if (today && n.min >= toMin(today[0]) && n.min < toMin(today[1])) return { open: true, text: 'Otwarte teraz · do ' + fmtT(today[1]) };
-    if (today && n.min < toMin(today[0])) return { open: false, text: 'Zamknięte – otwieramy dziś o' + NB + fmtT(today[0]) };
+    if (today && n.min < toMin(today[0])) return { open: false, text: nb('Zamknięte – otwieramy dziś o ' + fmtT(today[0])) };
     for (var i = 1; i <= 7; i++) {
       var wd = (n.wd + i) % 7, h = CONFIG.hours[wd];
-      if (h) return { open: false, text: 'Zamknięte – otwieramy ' + (i === 1 ? 'jutro' : DAY_IN[wd]) + ' o' + NB + fmtT(h[0]) };
+      if (h) return { open: false, text: nb('Zamknięte – otwieramy ' + (i === 1 ? 'jutro' : DAY_IN[wd]) + ' o ' + fmtT(h[0])) };
     }
     return { open: false, text: 'Zamknięte' };
   }
@@ -2079,12 +2093,12 @@ details[open] .pm { transform: rotate(45deg); }
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]; }); }
   function renderPreview() {
-    var c = collect(), html = '<p class="msg-intro">Dzień dobry, proszę o przygotowanie bukietu.</p><dl class="msg-list">';
+    var c = collect(), html = '<p class="msg-intro">' + nb('Dzień dobry, proszę o przygotowanie bukietu.') + '</p><dl class="msg-list">';
     c.rows.forEach(function (r) {
       if (!r[1] && (r[0] === 'Uwagi' || r[0] === 'Dodatki')) return;
-      html += '<dt>' + r[0] + '</dt><dd' + (r[0] === 'Bilecik' && r[1] ? ' class="is-bilet"' : '') + '>' + (r[1] ? esc(r[1]) : '<span class="msg-empty">' + (r[0] === 'Bilecik' ? 'bez bileciku' : 'do wyboru') + '</span>') + '</dd>';
+      html += '<dt>' + r[0] + '</dt><dd' + (r[0] === 'Bilecik' && r[1] ? ' class="is-bilet"' : '') + '>' + (r[1] ? esc(nb(r[1])) : '<span class="msg-empty">' + (r[0] === 'Bilecik' ? 'bez bileciku' : 'do wyboru') + '</span>') + '</dd>';
     });
-    html += '<dt>Kontakt</dt><dd>' + (c.name || c.phone ? esc((c.name || '') + (c.phone ? ', tel. ' + c.phone : '')) : '<span class="msg-empty">imię i telefon</span>') + '</dd></dl>';
+    html += '<dt>Kontakt</dt><dd>' + (c.name || c.phone ? esc(nb((c.name || '') + (c.phone ? ', tel. ' + c.phone : ''))) : '<span class="msg-empty">imię i' + NB + 'telefon</span>') + '</dd></dl>';
     html += '<p class="msg-sign">Pozdrawiam' + (c.name ? ', ' + esc(c.name) : '') + '</p>';
     preview.innerHTML = html;
     // linki akcji
@@ -2096,18 +2110,18 @@ details[open] .pm { transform: rotate(45deg); }
     var ex = extras();
     $$('.ext').forEach(function (g) { g.classList.toggle('on', ex.indexOf(g.getAttribute('data-ext')) > -1); });
     var cap = $('#tray-caption');
-    if (cap) cap.textContent = ex.length ? 'Na tacce: bukiet + ' + ex.join(', ').toLowerCase() : 'Tacka prezentowa – dodatki pojawią się obok bukietu';
+    if (cap) cap.textContent = nb(ex.length ? 'Na tacce: bukiet + ' + ex.join(', ').toLowerCase() : 'Tacka prezentowa – dodatki pojawią się obok bukietu');
   }
   function setErr(input, msg) {
     var err = document.getElementById(input.getAttribute('aria-describedby'));
-    if (msg) { input.setAttribute('aria-invalid', 'true'); if (err) err.textContent = msg; }
+    if (msg) { input.setAttribute('aria-invalid', 'true'); if (err) err.textContent = nb(msg); }
     else { input.removeAttribute('aria-invalid'); if (err) err.textContent = ''; }
   }
   function validate() {
     var bad = [];
     var name = $('#f-name'), phone = $('#f-phone'), date = $('#f-date'), addr = $('#f-addr');
     var digits = phone.value.replace(/[^\d]/g, '').replace(/^(0048|48)(?=\d{9}$)/, '');
-    setErr(name, name.value.trim().length < 2 ? 'Podaj swoje imię – będziemy wiedzieć, o kogo zapytać.' : ''); if (name.value.trim().length < 2) bad.push(name);
+    setErr(name, name.value.trim().length < 2 ? 'Podaj swoje imię – przyda się, gdy będziemy potwierdzać zamówienie.' : ''); if (name.value.trim().length < 2) bad.push(name);
     var okPhone = digits.length === 9;
     setErr(phone, okPhone ? '' : 'Podaj numer telefonu (9 cyfr), żebyśmy mogli potwierdzić zamówienie.'); if (!okPhone) bad.push(phone);
     var dMsg = !date.value ? 'Wybierz dzień, na który ma być gotowy bukiet.' : (date.value < todayISO() ? 'Ta data już minęła – wybierz dzisiejszą lub późniejszą.' : '');
@@ -2119,12 +2133,12 @@ details[open] .pm { transform: rotate(45deg); }
     bad.sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? 1 : -1; });
     return bad;
   }
-  function status(msg, ok) { statusEl.textContent = msg; statusEl.className = 'order-status ' + (ok ? 'is-ok' : 'is-err'); }
+  function status(msg, ok) { statusEl.textContent = nb(msg); statusEl.className = 'order-status ' + (ok ? 'is-ok' : 'is-err'); }
   function guard(e) {
     var bad = validate();
     if (bad.length) {
       if (e) e.preventDefault();
-      status(bad.length === 1 ? 'Uzupełnij jeszcze jedno pole zaznaczone w formularzu.' : 'Uzupełnij jeszcze ' + bad.length + ' pola zaznaczone w formularzu.', false);
+      status(bad.length === 1 ? 'Uzupełnij jeszcze jedno pole zaznaczone w formularzu.' : 'Uzupełnij jeszcze ' + bad.length + ' ' + plural(bad.length, 'pole', 'pola', 'pól') + ' zaznaczone w formularzu.', false);
       bad[0].focus();
       return false;
     }
@@ -2132,22 +2146,28 @@ details[open] .pm { transform: rotate(45deg); }
     featherFall($('.tray'));
     return true;
   }
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  function copyFallback(text) {
     return new Promise(function (res, rej) {
-      var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
+      var back = document.activeElement;
+      var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
       try { document.execCommand('copy') ? res() : rej(); } catch (err) { rej(err); }
-      ta.remove();
+      ta.remove(); if (back && back.focus) back.focus({ preventScroll: true });
     });
+  }
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(function () { return copyFallback(text); });
+    }
+    return copyFallback(text);
   }
   function dateHint() {
     var v = $('#f-date').value, hint = $('#date-hint'); if (!hint) return;
     if (!v) { hint.textContent = ''; return; }
     var p = v.split('-'), wd = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])).getUTCDay(), h = CONFIG.hours[wd];
     var t = $('#f-time').value;
-    if (!h) hint.textContent = 'To ' + DAY_NAMES[wd].toLowerCase() + ' – kwiaciarnia jest wtedy zwykle nieczynna. Zadzwoń, a ustalimy odbiór w innym dniu.';
-    else if (t && (toMin(t) < toMin(h[0]) || toMin(t) >= toMin(h[1]))) hint.textContent = 'Tego dnia jesteśmy otwarci ' + fmtT(h[0]) + '–' + fmtT(h[1]) + ' – wybierz godzinę w tym przedziale albo zapytaj przez telefon.';
+    if (!h) hint.textContent = nb('To ' + DAY_NAMES[wd].toLowerCase() + ' – kwiaciarnia jest wtedy zwykle nieczynna. Zadzwoń, a ustalimy odbiór w innym dniu.');
+    else if (t && (toMin(t) < toMin(h[0]) || toMin(t) >= toMin(h[1]))) hint.textContent = nb('Tego dnia jesteśmy otwarci ' + fmtT(h[0]) + '–' + fmtT(h[1]) + ' – wybierz godzinę w tym przedziale albo zapytaj przez telefon.');
     else hint.textContent = '';
   }
   function presetOccasion(name, extrasList) {
@@ -2185,7 +2205,7 @@ details[open] .pm { transform: rotate(45deg); }
       if (guard()) { var k = $('.karnet'); k.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); k.focus({ preventScroll: true }); }
     });
     var note = $('#f-note'), count = $('#note-count');
-    function upCount() { var left = 120 - note.value.length; count.textContent = 'Zostało ' + left + ' ' + (left === 1 ? 'znak' : (left % 10 >= 2 && left % 10 <= 4 && (left % 100 < 10 || left % 100 >= 20) ? 'znaki' : 'znaków')); }
+    function upCount() { var left = 120 - note.value.length; count.textContent = plural(left, 'Został', 'Zostały', 'Zostało') + ' ' + left + NB + plural(left, 'znak', 'znaki', 'znaków'); }
     note.addEventListener('input', upCount);
     $$('.tpl').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -2199,7 +2219,7 @@ details[open] .pm { transform: rotate(45deg); }
     $('#act-mail').addEventListener('click', function (e) { renderPreview(); guard(e); });
     $('#act-copy').addEventListener('click', function () {
       if (!guard()) return;
-      copyText(plainText(collect())).then(function () { status('Skopiowano – wklej treść w SMS, e-mail lub Messengerze.', true); }, function () { status('Nie udało się skopiować – zaznacz treść w podglądzie i skopiuj ręcznie.', false); });
+      copyText(plainText(collect())).then(function () { status('Skopiowano – wklej treść do SMS-a albo e-maila.', true); }, function () { status('Nie udało się skopiować – zaznacz treść w podglądzie i skopiuj ręcznie.', false); });
     });
     // Przyciski „Ułóż bukiet na tę okazję” / „Ułóż taki zestaw” (także te dodane później przez kalendarz)
     document.addEventListener('click', function (e) {
@@ -2230,14 +2250,14 @@ details[open] .pm { transform: rotate(45deg); }
   function lastFridayJune(y) { var d = new Date(Date.UTC(y, 5, 30)); while (d.getUTCDay() !== 5) d.setUTCDate(d.getUTCDate() - 1); return [6, d.getUTCDate()]; }
   var OCCASIONS = [
     { n: 'Dzień Babci', md: [1, 21], tip: 'Bukiet w ulubionych kolorach babci i karnet z kilkoma słowami od wnuków.', ex: ['Karnet okolicznościowy'] },
-    { n: 'Dzień Dziadka', md: [1, 22], tip: 'Roślina w doniczce albo skromny bukiet – drobiazg, który cieszy na długo.', ex: ['Doniczka'] },
+    { n: 'Dzień Dziadka', md: [1, 22], tip: 'Roślina w doniczce albo niewielki bukiet – drobiazg, który cieszy na długo.', ex: ['Doniczka'] },
     { n: 'Walentynki', md: [2, 14], tip: 'Klasyczne róże albo bukiet w ulubionych kolorach ukochanej osoby – zamów kilka dni wcześniej.' },
     { n: 'Dzień Kobiet', md: [3, 8], tip: 'Tulipany, pojedyncze kwiaty dla koleżanek albo większy bukiet dla tej jednej.' },
     { n: 'Wielkanoc', fn: easter, tip: 'Wiosenne kwiaty w doniczkach i świeży bukiet na świąteczny stół.' },
-    { n: 'Dzień Matki', md: [5, 26], tip: 'Bukiet na indywidualne zamówienie z karnetem – przed Dniem Matki warto zamówić kilka dni wcześniej.', ex: ['Karnet okolicznościowy'] },
+    { n: 'Dzień Matki', md: [5, 26], tip: 'Bukiet na indywidualne zamówienie i karnet z życzeniami – warto zamówić go kilka dni wcześniej.', ex: ['Karnet okolicznościowy'] },
     { n: 'Dzień Dziecka', md: [6, 1], tip: 'Mały kolorowy bukiecik albo roślinka do pokoju – dla małych i dużych.' },
     { n: 'Dzień Ojca', md: [6, 23], tip: 'Elegancka roślina zielona albo bukiet w stonowanych barwach.', ex: ['Doniczka'] },
-    { n: 'Koniec roku szkolnego', fn: lastFridayJune, tip: 'Bukiety dla nauczycieli z karnetem z podziękowaniem – warto zamówić je kilka dni wcześniej.', ex: ['Karnet okolicznościowy'] },
+    { n: 'Koniec roku szkolnego', fn: lastFridayJune, tip: 'Bukiety dla nauczycieli i karnet z podziękowaniem – warto zamówić je kilka dni wcześniej.', ex: ['Karnet okolicznościowy'] },
     { n: 'Dzień Edukacji Narodowej', md: [10, 14], tip: 'Pojedyncza róża, mały bukiet albo roślina w doniczce – z podziękowaniem dla nauczyciela.', ex: ['Karnet okolicznościowy'] },
     { n: 'Wszystkich Świętych', md: [11, 1], tip: 'Zapytaj o stroiki i wiązanki – ustalimy szczegóły przez telefon. Kwiaty sztuczne przetrwają listopadową pogodę.', ex: ['Kwiaty sztuczne'] },
     { n: 'Boże Narodzenie', md: [12, 24], tip: 'Gwiazda betlejemska w doniczce i figurka anioła na prezent – zapytaj o dostępność.', ex: ['Figurka anioła'] }
@@ -2257,11 +2277,11 @@ details[open] .pm { transform: rotate(45deg); }
     list.innerHTML = found.slice(0, 4).map(function (f) {
       var frac = Math.max(0.03, 1 - Math.min(f.days, 100) / 100);
       var big = f.days === 0 ? 'Dziś' : f.days === 1 ? '1' : String(f.days), small = f.days === 0 ? 'to już!' : f.days === 1 ? 'dzień' : 'dni';
-      var dateTxt = fmt ? fmt.format(new Date(f.t)) : '';
+      var dateTxt = fmt ? nb(fmt.format(new Date(f.t))) : '';
       return '<li class="occ"><div class="occ-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="occ-track" cx="60" cy="60" r="52"/><circle class="occ-hair" cx="60" cy="60" r="44"/>' +
         '<circle class="occ-prog" cx="60" cy="60" r="52" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + C.toFixed(1) + '" data-off="' + (C * (1 - frac)).toFixed(1) + '"/></svg>' +
         '<p class="occ-days"><strong>' + big + '</strong><span>' + small + '</span></p></div>' +
-        '<h3>' + f.o.n + '</h3><p class="occ-date">' + dateTxt + '<span class="vh"> – ' + (f.days === 0 ? 'dziś' : 'za ' + f.days + ' ' + small) + '</span></p><p class="occ-tip">' + f.o.tip + '</p>' +
+        '<h3>' + f.o.n + '</h3><p class="occ-date">' + dateTxt + '<span class="vh">' + nb(' – ' + (f.days === 0 ? 'dziś' : 'za ' + f.days + ' ' + small)) + '</span></p><p class="occ-tip">' + nb(f.o.tip) + '</p>' +
         '<a class="btn btn--ghost btn--sm" href="#zamow" data-preset="' + f.o.n + '"' + (f.o.ex ? ' data-extras="' + f.o.ex.join('|') + '"' : '') + '>Ułóż bukiet na tę okazję</a></li>';
     }).join('');
     var rings = $$('.occ-prog', list);
@@ -2357,7 +2377,7 @@ details[open] .pm { transform: rotate(45deg); }
         li.appendChild(b); list.appendChild(li);
       });
       var left = items.length - done, ph = photos - done;
-      sum.textContent = 'Do uzupełnienia: ' + left + ' ' + plural(left, 'miejsce', 'miejsca', 'miejsc') + ' (' + ph + ' ' + plural(ph, 'zdjęcie', 'zdjęcia', 'zdjęć') + ', ' + texts + ' ' + plural(texts, 'tekst', 'teksty', 'tekstów') + ').';
+      sum.textContent = nb('Do uzupełnienia: ' + left + ' ' + plural(left, 'miejsce', 'miejsca', 'miejsc') + ' (' + ph + ' ' + plural(ph, 'zdjęcie', 'zdjęcia', 'zdjęć') + ', ' + texts + ' ' + plural(texts, 'tekst', 'teksty', 'tekstów') + ').');
     }
     function toggle(on) {
       on = typeof on === 'boolean' ? on : !document.documentElement.classList.contains('edit-mode');
